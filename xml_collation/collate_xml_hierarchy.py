@@ -10,15 +10,24 @@ from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parseString, END_ELEMENT,
 # init input
 doc = parse("../xml_source_transcriptions/liefde-tsa.xml")
 
+# init output
+# NOTE: we start with output as a string
+output = ""
+
 for event, node in doc:
-    if event != CHARACTERS:
-        # debug
-        print(event, node)
+    if event == CHARACTERS:
+        continue
+
+    # debug
+    # print(event, node)
+
+    if event == START_ELEMENT:
+        output += " " + node.localName
 
 
+print(output)
 
-
-# # init output
+#
 # output = Element("output")
 # open_elements = Stack()
 # open_elements.push(output)
@@ -48,4 +57,3 @@ for event, node in doc:
 #         else:
 #             open_elements.pop()
 #
-# print(output.toxml())
