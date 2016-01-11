@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader xml:lang="en" xmlns="">
+        <fileDesc>
+            <titleStmt>
+                <title xml:id="liefde-tsb">Typoscript B "Wat is liefde zonder verleiding"</title>
+                <author xml:id="RB">
+                    <name>Raymond Brulez</name>
+                </author>
+                <author xml:id="typist">
+                    <name>Raymond Brulez</name>
+                </author>
+                <principal xml:id="EB">
+                    <name>Elli Bleeker</name>
+                </principal>
+                <principal xml:id="DVH">
+                    <name>Dirk Van Hulle</name>
+                </principal>
+                <principal xml:id="VN">
+                    <name>Vincent Neyt</name>
+                    <principal xml:id="SF">
+                        <name>Sarah Fierens</name>
+                    </principal>
+                </principal>
+                <funder>
+                    <name>Centre for Manuscript Genetics (UA)</name>
+                    <name>DiXiT (Digital Scholarly Editions Initial Training Network)</name>
+                    <address>
+  <addrLine>Universiteit Antwerpen (UA)</addrLine>
+  <addrLine>Prinsstraat 13</addrLine>
+  <addrLine>B-2000 Antwerpen</addrLine>
+  <addrLine>Belgium</addrLine>
+  <addrLine>tel: +32 (0)3 220 42 46</addrLine>
+  <addrLine>email: dirk.vanhulle@ua.ac.be</addrLine>
+  </address>
+                </funder>
+                <respStmt>
+                    <name>Dirk Van Hulle</name>
+                    <resp>Brulez Archive coordinator, encoding scheme, TEI customization</resp>
+                </respStmt>
+                <respStmt>
+                    <name>Vincent Neyt</name>
+                    <resp>Project architecture, encoding scheme, TEI customization</resp>
+                </respStmt>
+                <respStmt>
+                    <name>Elli Bleeker</name>
+                    <resp>text encoding</resp>
+                </respStmt>
+            </titleStmt>
+            <extent/>
+            <publicationStmt>
+                <authority>Centre for Manuscript Genetics (University of Antwerp)</authority>
+                <pubPlace>Antwerp</pubPlace>
+                <availability status="restricted">
+                    <p>Not to be distributed outside the project</p>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <bibl><!-- Bibliographic citiation of the typescript-->Typescript B of the
+                    framestory "Wat is liefde zonder verleiding", part of the collection of stories
+                    "Wat is liefde zonder verleiding" door Raymond Brulez (preliminary reference:
+                    B917_2bis_B5_tsB_Liefde)</bibl>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <projectDesc>
+                <p><!-- Detailed description of the purpose for which this document is encoded, together with
+     information concerning the encoding practice.--></p>
+            </projectDesc>
+            <editorialDecl>
+                <p>
+                    <!-- details about the editorial principles and practice applied during the encoding of the ts -->
+                </p>
+            </editorialDecl>
+            <tagsDecl>
+                <rendition xml:id="blackink"/>
+                <rendition xml:id="deepblackink"/>
+                <rendition xml:id="greypencil"/>
+                <rendition xml:id="bluepencil"/>
+                <rendition xml:id="redpencil"/>
+            </tagsDecl>
+        </encodingDesc>
+        <profileDesc>
+            <creation>
+                <date when="1930">1930</date>
+                <!-- specify date! -->
+            </creation>
+            <langUsage>
+                <language ident="nl" usage="80">Dutch</language>
+                <language ident="fr" usage="10">French</language>
+                <language ident="la" usage="10">Latin</language>
+            </langUsage>
+            <handNotes>
+                <handNote scope="major" medium="black_ink" xml:id="typist"/>
+                <handNote medium="black_ink"/>
+                <handNote medium="blueblack_ink"/>
+                <handNote medium="deepblack_ink"/>
+                <handNote medium="grey_pencil"/>
+                <handNote medium="blue_pencil"/>
+                <handNote medium="red_pencil"/>
+            </handNotes>
+            <listTranspose>
+                <transpose>
+                    <ptr target="#trans2_tsB_02r"/>
+                    <ptr target="#trans1_tsB_02r"/>
+                </transpose>
+            </listTranspose>
+        </profileDesc>
+        <revisionDesc/>
+    </teiHeader>
+    <text xml:lang="nl" xml:id="liefde-tsb" xmlns="">
+        <front>
+            <!-- Encode two title pages of typescript? -->
+        </front>
+        <body>
+            <div type="page" rend="recto" n="1r">
+                <delSpan spanTo="#tsB_1r" type="crossedOut" rend="grey pencil" hand="#RB" resp="#EB"/>
+                <head type="main">SHEHERAZADE</head>
+                <lb/>
+                <head type="sub">of <lb/>" Literatuur als Losprijs "</head>
+                <anchor xml:id="tsB_1r"/>
+                <!-- hoe lijn coderen? -->
+                <p style="text-indent: 50px;"> Wat is Liefde zonder verleiding ? </p>
+                <p style="text-indent: 50px;"> Een<add place="inline" rend="deepblack ink"
+                        hand="#RB" resp="#EB"><metamark function="disconnect"/></add>geenszin<del
+                        type="instantcorrection" hand="typist" rend="black ink" resp="#EB"
+                        >n</del><add place="overwritten" rend="black ink" hand="#typist" resp="#EB"
+                        >s</add> benijdenswaardig lot, dat, helaas, Shiriar, sultan <lb/>van Arabië
+                    beschoren is.<add place="inline" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >..</add>
+                </p>
+                <p style="text-indent: 50px;">De te streng doorgedreven rationalisatie van zijn
+                    prinsenjeugd <lb/>had dit <del type="crossedOut" hand="#RB" rend="deepblack ink"
+                        resp="#EB">met zich</del> meegebracht. Zooals alle Staten die " aan het
+                        mo<lb rend="hyphen"/>derniseeren slaan" had Arabië wetenschappelijke
+                    methoden toegepast <lb/>op een gebied waar deze we<del type="instantcorrection"
+                        hand="#typist" rend="black ink" resp="#EB"/><add place="overwritten"
+                        hand="#typist" rend="black ink" resp="#EB">i</add>nig van pas k<del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">w</del><del
+                        type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">a</del><add
+                        place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">o</add>men,
+                    zoo o.m. in de se<lb rend="hyphen"/>xueele opvoeding van den troo<del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >p</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >n</add>opvolger. Shiriar, vijftien jaar oud <lb/>geworden, had vreemd
+                    opgekeken, toen Fatima, eene leerares die niets <lb/>meer bezat van de bekoring
+                    die de <del type="instantcorrection" rend="black ink" hand="#typist" resp="#EB"
+                        >w</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >j</add>eugd verleent, met den leergang <lb/>van geslachtelijke
+                    voortplanting op een pedante en plechtige wij<del type="instantcorrection"
+                        hand="#typist" rend="black ink" resp="#EB">f</del><add place="overwritten"
+                        hand="#typist" rend="black ink" resp="#EB">z</add>e <lb/>begonnen was.
+                        Aa<del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">a</del>n
+                    de hand <del type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >den</del>
+                    <add place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">van</add>
+                    wandplaten die de verschillende <lb/>ontwikkelingsstadia van het kuikentje, de
+                    kikvorschlarve en het <lb/>menschelijke foutus verbeelden, <del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >j</del><add place="overwritten" rend="black ink" hand="#typist" resp="#EB"
+                        >w</add>erd prins Shiriar in de intiemste <lb/>geheimen der Natuur
+                        ingewijd.<del type="instantcorrection" hand="#typist" rend="black ink"
+                        resp="#EB">D</del></p>
+
+                <p style="text-indent: 50px;">Daar de uitslag dezer lessen bevredigend was<add
+                        place="inline" rend="deepblack ink" hand="#RB" resp="#EB">,</add> werd
+                    Shiriar , <lb/>op het einde van het schooljaar<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">,</add>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">door den
+                        Staat</add> uitgehu<del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">j</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB"
+                    >w</add>d<!-- Brulez verwart vaker de 'w' en de 'j' op zijn typmachine --> aan
+                    Zobeïde een<add place="inline" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >e</add> prinses <lb/>van een naburig land, ten einde de onderhandelingen
+                    over een<add place="inline" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            ref="#tsB_1r_margin1"/></add>
+                    <add place="marginleft" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            xml:id="tsB_1r_margin1">7</metamark></add><note>Dit teken verwijst naar
+                        de paginanummers van de drukproef.</note> handels<lb rend="hyphen"/>tractaat
+                    te bevorderen en de clausule der " meest begunstigde natie" <lb/>te <del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">kunnen</del>
+                    verkrijgen. Shiriars gemalin was niet leelijk, ook niet <lb/>mooi. Maar toen hij
+                        <del type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >s</del><add place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >S</add>ultan geworden was, ergerde het hem dat zij, <lb/>die bij alle
+                    plechtigheden hem terzijde stond, door het contrast <lb/>van haar zwaarlijvige
+                        gestalte<add place="inline" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >,</add>zijn bedeesde schraalheid nog <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">meer</del>
+                    <lb/>potsierlijk<add place="inline" rend="deepblack ink" hand="#RB">er</add>
+                    deed uitkomen. Daarbij had <del type="crossedOut" rend="deepblack ink"
+                        hand="#RB" resp="#EB">ze</del>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >Zobeïde</add> een pretentie van alle <lb/>duivels ! <del
+                        type="instantcorrection" rend="black ink" hand="#typist" resp="#EB"
+                        >I</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >O</add>nder het voorwendsel van " het prestige der dynastie hoog <lb/>te
+                    houden " was de vorstin er steeds op uit herrie te schoppen <lb/>à propos van
+                        p<hi rend="updownconnect"> </hi>rotokolregels die zij alleen <add
+                        place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">tot</add> in
+                    de puntjes kende. <lb/>Eens had ze verlangd dat in al de scholen van Arabië
+                    nevens het <lb/>pleisteren b<del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">ee</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">or</add>stbeeld van den regeerenden vorst ook
+                    dit van de sul<lb rend="hyphen"/>t<del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">n</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">a</add>ne zou geplaatst worden. Daar de vizier
+                    van Onderwijs aan dit <lb/>verlangen, hetwelk - naar hij beweerde - " ongrondwettelijk"was,<!-- of spaties coderen? -->
+                    <lb/>geen gevolg wilde geven, ging Zobeide maandenlang mokken tegen haar
+                        <lb/>echtegenoot<add place="inline" rend="deepblack ink" hand="#RB"
+                        resp="#EB">,</add>omdat hij niet, stante <add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">p</add>ede, het portefeuille van
+                    den <lb/>onwilligen vizier terugge<add place="supralinear" rend="deepblack ink"
+                        hand="#RB" resp="#EB">e</add>ischt had.</p>
+                <p style="text-indent: 50px;"> Aa<del type="crossedOut" rend="deepblack ink"
+                        hand="#RB" resp="#EB">a</del>nvankelijk had Shiriar voor <del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">al deze</del>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">zijn</add>
+                    echtelijke ergernissen <lb/>w<del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">t</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">a</add>t troost en afleiding gevonden bij de
+                    haremmeisjes die hem voor <lb/>rekening van het budget der " Keizerlijke
+                    Verstrooiingen " geleverd <lb/>werden. <add place="inline" rend="deepblack ink"
+                        hand="#RB" resp="#EB"><metamark>[</metamark></add><note>Teken voor nieuwe
+                        alinea.</note><!-- hoe coderen? -->In den namiddag, wan<del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >e</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >n</add>eer de felste hitte voorbij was, <lb/>kwam door<del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">heen</del> de
+                    luistille gangen van het paleis, de uitverkorene, <lb/>klopte bescheiden op de
+                    deur van de kamer waar de <del type="instantcorrection" rend="black ink"
+                        hand="#typist" resp="#EB">prins</del>sultan <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">zijn</del>
+                    <lb/><add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >van</add> verveling geeuwde. Zooals de mannequin in een Pari<del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >d</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >j</add>sch modehuis den <lb/>naam van het door haar gedragen <del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">kleed</del>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">toilet</add>
+                    aan den klant opgeeft :</p>
+                <p> " Afternoon Tea " , " Blue Girl ", " Un Caprice "<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">,</add>of<add place="inline"
+                        hand="#RB" rend="grey pencil" resp="#EB"><metamark ref="tsB_1r_margin2"
+                        /></add><note>Dit teken verwijst naar de paginanummering van de
+                        drukproef.</note>
+                    <add place="marginleft" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            xml:id="tsB_1r_margin2">8</metamark></add> iets dergelijks <lb/>zoo
+                    zegde ze, met in de stem de lichte beving der actrice die in de <lb/>rats zit :
+                    " Roze Verrassing "<add place="inline" rend="deepblack ink" hand="#RB"
+                        resp="#EB">,</add>
+                    <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">of</del> "
+                    Bloesembot " of " Voor uw ge<lb rend="hyphen"/>noegen " - natuur<del
+                        type="instantcorrection" hand="typist" rend="black ink" resp="#EB"
+                    >i</del>lijk in het Ara<del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">a</del>b<add place="supralinear" rend="deepblack ink" hand="#RB"
+                        resp="#EB">i</add> -. Menigvuldig en soms van een <lb/>frissche fantasie
+                    getuigend waren de benamingen die het " <del type="instantcorrection"
+                        hand="#typist" rend="black ink" resp="#EB">College <lb/>der</del>
+                    <lb/>Keizerlijke College der Wellustcommissarissen " <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">hádden</del> uit<del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">ge</del><lb
+                        rend="hyphen"/>vond<del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">en</del>. Doch mettertijd was Shiriar ook dit o<del
+                        type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">o</del><add
+                        place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                    >f</add>ficieel geregeld minne<del type="crossedOut" rend="deepblack ink"
+                        hand="#RB" resp="#EB">n</del>spel <lb/>beu geworden.</p>
+                <p style="text-indent: 50px;"> Inderdaad, wat is Liefde die niet voorafgegaan is
+                    door <lb/>verleiding ? Helaas, Hij, Shiriar, Afstammeling der Profeten,
+                    <lb/>krijgt den wellust voorgeschoteld als een dagelijksche kost waarvoor
+                    <lb/>hij <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">dan
+                        nog</add> geen arbeid verricht heeft. Hoe zoet moet nochtans zijn dit
+                        <lb/><del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >werven om</del>
+                    <add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB">trachten
+                        naar</add> een vrouw , de ongewisheid vóór de liefelijke toestemming!
+                    <lb/>Shiriar denk aan de proletenvrijagies in de nauwe duistere steegjes
+                    <lb/>van Bagdad, <del type="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">of</del>
+                    <add place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">en</add> op
+                    de hellingen der wallen. En dan die herinnering <lb/><del type="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">a</del><add place="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">v</add>an v<del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >r</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >e</add>rleden zomer, toen hij, in gezelschap van den vizier van
+                    <lb/>Landbouw , een inspectietoch in de streek van den Euphraat deed. <lb/><del
+                        type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">D</del><add
+                        place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">E</add>e<add
+                        type="inline" rend="deepblack ink" hand="#RB" resp="#EB">n</add>
+                        ambtenaar<add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >-agronoom</add> leerde hem juist <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">het verschil</del>
+                    <seg type="transposition" target="tsB_1r_trans1">onder<add place="inline"
+                            rend="deepblack ink" hand="#RB" resp="#EB">s</add>cheiden</seg>
+                    <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">van</del>
+                    <lb/>rogge, tarwe en haver <anchor xml:id="tsB_1r_trans1"
+                    /><!-- codering checken! -->, toen ze, <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">als een</del> in het koren
+                    verdoken <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >koppel <lb/>patrijzen</del><add place="marginleft" rend="deepblack ink"
+                        hand="#RB" resp="#EB">Als een opgeschrokken koppel patrijzen</add>, een
+                        jonge<del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >n</del> boer en boerin d<del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">e</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">i</add>e zich liefkoosden, ontdekt<lb
+                        rend="hyphen"/>en. <del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">Verschrikt voor de statige heeren</del> waren ze op de vlucht
+                        gesla<del type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                            ><unclear>xxx</unclear></del><add place="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">gen</add>
+                    <add place="marginbelow" rend="deepblack ink" hand="#RB" resp="#EB">voor de
+                        statige heeren.</add>
+                    <lb/>De sultan had nog net gemerkt hoe <add place="supralinear"
+                        rend="deepblack ink" hand="#RB" resp="#EB">, al loopende,</add> de blozende
+                    deerne de zware naakte <lb/>borsten weer in haar jak wegstopte.</p>
+            </div>
+
+            <div type="page" rend="recto" n="2r">
+                <fw type="pageNum" place="marginright">2.</fw>
+                <p style="text-indent: 50px;"> Waarachtig, <del type="crossedOut" hand="#RB"
+                        rend="deepblack ink" resp="#EB">neen, </del>die haremliefde in deze kamer
+                    van kussens en <lb/>boeken, kon <add place="margintop" hand="#RB"
+                        rend="deepblack ink" resp="#EB">hoe langer hoe minder</add> bekoren en, als
+                    een kind dat zijn zoetig<lb rend="hyphen"/>heid verwend <add><metamark
+                            ref="tsB_2r_margin1"/></add>
+                    <add place="marginleft" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            xml:id="tsB_2r_margin1">9</metamark></add><note>Dit teken verwijst naar
+                        de paginanummers van de drukproef.</note>is, <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">stuurde</del>
+                    <add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB">begon</add>
+                    hij de odalisken <del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">telkens</del> onverrichterzake <lb/>terug <add place="marginleft"
+                        rend="deepblack ink" hand="#RB" resp="#EB">te sturen</add>. De aldus
+                    geaffronteerde meisjes <del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">slaakten</del>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >kloegen</add> bitter<del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">e</del>
+                    <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">klachten</del>
+                    <lb/>en het Keizer<del type="crossedOut" rend="deepblack ink" hand="#RB"
+                        resp="#EB">i</del>lijke College der <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">Wellust</del>commissarissen vroeg
+                    zich af <lb/>hoe ze den sultan weer op het pad der traditionneele <del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">erotiek</del>
+                    <add place="infralinear" rend="deepblack ink" hand="#RB" resp="#EB">keizerlijke
+                        lusten</add> zouden <lb/>brengen.</p>
+                <p style="text-indent: 50px;"> Zij lieten exotische vrouwen komen : Spaansche
+                    cigaretteras, <lb/>wier huid okerblond is als de tabak die ze verwerken,
+                    Noorsche <lb/>Walkürengestalten, schoon en koel als marmeren beelden, Geishas
+                    uit <lb/><add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >de</add> Yoshiwara die een heele documentatie van tech<del
+                        type="instantcorrection" rend="black ink" hand="#typist" resp="#EB"
+                        >s</del><add place="overwritten" rend="black ink" hand="#typist" resp="#EB"
+                        >n</add>ische <choice><sic>voort<del type="overwritten" rend="deepblack ink"
+                                hand="#RB" resp="#EB"><unclear>x</unclear></del><add
+                                place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                                >r</add>effl<del type="instantcorrection" rend="deepblack ink"
+                                hand="#RB" resp="#EB">e</del><add place="overwritten"
+                                rend="deepblack ink" hand="#RB" resp="#EB">i</add>jke</sic>
+                        <corr>voortreffelijke</corr></choice>
+                    <lb/><add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >erotische</add> houtsneden meebrachten. Het kon alles niet veel baten.<add
+                        place="inline" rend="deepblack ink" hand="#RB" resp="#EB">..</add></p>
+                <p style="text-indent: 50px;">Het College der <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB"
+                            >Wellust</del><choice><sic>commissarrissen</sic>
+                        <corr>commissarissen</corr></choice> noodigde de jongste <lb/>" Miss
+                    Universe " uit. Docht daar ze eerst nog een reis rond de werel<add
+                        place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >d</add><note>De '-d' paste niet meer op de regel en is door Brulez later
+                        toegevoegd.</note>
+                    <lb/>moest doen was ze verwelkt toen ze te Bagdad aankwam. <add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">Ze</add>
+                    <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">Men</del>
+                        bestelde<add place="inline" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >n</add>
+                    <lb/>sp<del type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                            ><unclear>e</unclear></del><add place="overwritten" rend="deepblack ink"
+                        hand="#RB" resp="#EB">e</add>ciale films in Buenos<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">-</add>Aires; <add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB"><metamark ref="#tsB_2r_margin2"
+                            >X</metamark></add>
+                    <add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB"><metamark
+                            xml:id="tsB_2r_margin2">X</metamark> lieten XVIIIde eeuwsche erotische
+                        tooneelstukjes opvoeren <add place="supralinear" rend="deepblack ink"
+                            hand="#RB" resp="#EB">zorgvuldig</add> geën<lb rend="hyphen"/>sceneerd
+                        naar ontwerpen van Fragonard en Boucher;</add> kocht<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">en</add> de laatste succesnummers
+                    <lb/>van Folies-Bergère en Wintergarten. Aldus ging men er toe over <lb/>naakte
+                    meisjes te verzilveren en te vergulden. Shiriar deed ze <lb/>rechtsomkeer<add
+                        place="inline" rend="deepblack ink" hand="#RB" resp="#EB">t</add> maken met
+                    de opmerking dat hij geen schouwgarnituren <lb/>van doen had.</p>
+                <p style="text-indent: 50px;"> En ten einde raad<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">,</add> deed men, op
+                    uitdrukkelijk bevel van den <lb/>Grootvizier, een beroemden sexuoloog <seg
+                        type="transpostion" target="#tsb_2r_trans1">komen</seg> van het " In<del
+                        type="instantcorrection" rend="black ink" hand="#typist" resp="#EB"
+                        >n</del><add place="overwritten" rend="black ink" hand="#typist" resp="#EB"
+                        >s</add>titut <lb/>für Sexualwissenschaft " van Weenen <anchor
+                        xml:id="tsb_2r_trans1"/>. <del type="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">J</del><add type="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">D</add>e He<del type="instantcorrection"
+                        hand="#typist" rend="black ink" resp="#EB">e</del><add type="overwritten"
+                        hand="#typist" rend="black ink" resp="#EB">r</add><add place="supralinear"
+                        type="overwritten" hand="#typist" rend="black ink" resp="#EB">r</add>r
+                        <note>Brulez had reeds tijdens het typen de tweede 'e' van 'Heer' veranderd
+                        in een 'r', heeft hij nog eens ter verduidelijking de 'r' boven het woord
+                        geplaatst.</note> Professor onderzocht <lb/>nauwkeurig den sultan. De
+                    uitslag der physiologische analysen was <lb/>normaal. Er bleek dus geen o<del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >n</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >r</add>ganisch letsel met de lusteloosheid <lb/>van den vorst gemoeid.<add
+                        place="inline" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            ref="#tsb_2r_margin3"/></add>
+                    <add place="marginleft" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            xml:id="tsb_2r_margin3">10</metamark><note>Dit teken verwijst naar de
+                            paginanummers van de drukproef.</note></add>
+                </p>
+                <p style="text-indent: 50px;"> " <del type="crossedOut" rend="deepblack ink"
+                        hand="#RB" resp="#EB">Dan</del>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">Nu</add> wou
+                    ik ook nog een volledig relaas van de laats<del type="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">d</del><add place="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">t</add>e droomen <lb/>van zijne
+                    Majesteit hebben " verlangde de professor<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">,</add> " Bij middel <lb/><del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">van</del>
+                        de<add place="inline" rend="deepblack ink" hand="#RB" resp="#EB">r</add>
+                        psyc<add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >h</add>oanaly<del type="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">se</del><add place="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">tische</add>
+                    <add place="inline" rend="deepblack ink" hand="#RB" resp="#EB">methode</add>
+                    zullen we misschien kunnen uitmaken welke <lb/>richting de onbewuste <del
+                        type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">sexueele</del>
+                    verlangens van den vorst uitgaan. "</p>
+                <p style="text-indent: 50px"> Maar zie : Shiriar droomde nooit ! Zijn slaap bleef
+                    steeds <lb/>ledig : zwarte onbeschreven weerkant van zijn levenslei. Ook had
+                        <lb/>hi<del type="instantcorrection" hand="#typist" resp="#EB"
+                        rend="black ink">d</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">j</add> den bijnaam van " de man zonder droomen
+                    " gekregen.</p>
+                <p style="text-indent: 50px;"> De Weensche <del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">sexuoloog</del>
+                    <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >specialist</add> gaf den Groot Vizier verslag over <lb/>zijn onderzoek<add
+                        place="inline" rend="deepblack ink" hand="#RB" resp="#EB">:</add>" Het ware
+                    misschien best zijne Majesteit <add place="supralinear" rend="deepblack ink"
+                        hand="#RB" resp="#EB">een</add> volkomen <lb/>rust te schenken. Zijn
+                    verlangen zal wel v<del type="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">e</del><add place="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">a</add>n z<del type="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">a</del><add place="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">e</add>lve weer wakker wor<lb rend="hyphen"/>den. Trouwens ik zie
+                    niet in waarom U mordicus de sexueele bedrijvig<lb rend="hyphen"/>heid van den
+                    vorst gaa<del type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >l</del><add place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >n</add>de wilt houden. Zijn onlust bespaart u ten <lb/>slotte een mooien
+                    stuiver op het budget der Keizerlijke amusementen.<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">.</add>"</p>
+                <p style="text-indent: 50px;"> - " Wij vre<add place="inline" rend="deepblack ink"
+                        hand="#RB" resp="#EB">e</add>zen alleen maar", wedervoer de Groot-Vizier, "
+                    dat, <lb/>zoo hij zich niet met de odalisken bezi<del type="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">k</del><add place="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">g</add>houdt<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB">,</add>de sultan zich met <lb/>de
+                    staatszaken <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >zal</del> gaa<del type="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">n</del><add place="overwritten" rend="deepblack ink" hand="#RB"
+                        resp="#EB">n</add> bemoeien... Waarvoor Allah ons gelieve <lb/>te
+                    behoeden!...."</p>
+                <p style="text-align: center; display: block;">*<lb/>** </p>
+                <p style="text-indent: 50px;"> Bij het open raam dat op de hovingen van zijn paleis
+                    uitgeeft, <lb/>ligt Shiriar, moe uitgest<del type="instantcorrection"
+                        hand="#typist" rend="black ink" resp="EB">e</del>rekt van dadenloosheid op
+                    een divan. De <lb/>nadmiddaghitte verlamt de natuur. De zon slaat het blanke
+                        hem<add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >e</add>lspansel <lb/>aan scherven<add place="inline" rend="deepblack ink"
+                        hand="#RB" resp="#EB">,</add> als een brutale steenworp een winkelruit.
+                    Tusschen de <lb/>palmen rijst de minaret van de mo<del type="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">r</del><add place="overwritten"
+                        rend="deepblack ink" hand="#RB" resp="#EB">s</add>kee : ontbladerde
+                    reuzenvaren, <lb/>waarvan de stengel al stij<del type="instantcorrection"
+                        rend="black ink" resp="#EB" hand="#RB">k</del><add place="overwritten"
+                        hand="#RB" resp="#EB" rend="black ink">g</add>ende bij ieder<add
+                        place="inline" hand="RB" rend="grey pencil" resp="#EB"><metamark
+                            ref="#tsB_2r_margin4"/></add>
+                    <add place="marginleft" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            xml:id="tsB_2r_margin4">11</metamark></add><note>Dit teken verwijst naar
+                        de paginanummering van de drukproef.</note> verdieping dunner wordt. In
+                    <lb/>den lommer kronkelen flamingos hun lange halzen tot verliefde
+                    <lb/>initialen. Drie zwanen lanterfanten op<add place="inline"
+                        rend="deepblack ink" hand="#RB" resp="#EB"><metamark function="disconnect"
+                        /></add>den parkvijver rondom de <lb/>springfontein die zich sierlijk en
+                    statig ontplooit. De groene <lb/>standaard van den profeet hangt, boven de
+                    paleispoort, <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                        >futloos</del>
+                    <add place="inline" rend="deepblack ink" hand="#RB" resp="#EB">neer<lb
+                            rend="hyphen"/>slachtig</add> rondo<del type="crossedOut"
+                        rend="deepblack ink" hand="#RB" resp="#EB">o</del>m den
+                        vla<retrace>gg</retrace>estok.<!-- retrace hier met andere hand, coderen? --></p>
+                <p style="text-indent: 50px;"> Gevangen<del type="crossedOut" hand="#RB"
+                        rend="deepblack ink" resp="#EB">e</del> tusschen kussens en tapijten !...
+                        <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">Shiriar
+                        weet niet waarheen hij zijn verlangen zou richten.</add> De prik der
+                        gramo<lb rend="hyphen"/>foonnaald zal he<del type="overwritten" hand="#RB"
+                        rend="deepblack ink" resp="#EB">m</del><add place="overwritten" hand="#RB"
+                        rend="deepblack ink" resp="#EB">m</add> misschien opmonteren. <del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">Shiriar</del>
+                    <add place="infralinear" hand="#RB" rend="deepblack ink" resp="#EB">Hij</add>
+                    laat den microfoon <lb/>deinend vlotten op den ebonieten draaikolk der plaat,
+                        waar<del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >op</del> - als <lb/>gold het de symbolische gelijkenis met een naar zijn
+                    snel einde <lb/>spoedend levensbestaan te volledigen - het lichtspel den schim
+                    van <lb/>den zandlooper der eeuwigheid spiegelt . Aldus haalt de sultan zijn
+                    <lb/>hart<!-- stond er onder de 'r' eerst nog een andere letter? --> op aan de
+                            <choice><sic>flaggellantissche</sic>
+                        <corr>flaggellantische</corr></choice> muziek van Strauss' Salome en aan de
+                    <lb/>Ouverture van Tristan die volgeklotst staat met de golven van de <lb/>zee
+                    en van het wee. Dit doet hem denken aan de<del type="crossedOut" hand="#RB"
+                        rend="deepblack ink" resp="#EB">n</del> zomermaand die hij <lb/>in een
+                    badstadje aan de Noordzee doorbracht. Toen heeft hij eens <lb/>een kortstondige
+                        <del type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >vlucht</del> ontvluchting gewaagd. Eens dat hij in gezel<lb rend="hyphen"
+                    />schap v<del type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >e</del><add place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >a</add> zijn twee private detektiebven in het bad was gegaan, <lb/>had hij
+                    zich haastig weer aangekleed. En
+                    v<retrace>oo</retrace>r<!-- Niet echt een 'retrace'... De accentjes zijn later aangebracht op de 'oo' -->
+                    dat de twee bewakers <unclear reason="illegible">de</unclear></p>
+            </div>
+
+            <div type="page" rend="recto" n="03r">
+                <fw type="pageNum" place="marginright">3.</fw>
+                <p>
+                    <del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">die in</del>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">uit</add> de
+                        badkoets<del type="instantcorrection" hand="#typist" rend="black ink"
+                        resp="#EB">t</del><add place="overwritten" hand="#typist" rend="black ink"
+                        resp="#EB">e</add>n <add place="supralinear" hand="#RB" rend="deepblack ink"
+                        resp="#EB">kwamen</add> welke <del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">rechts en links</del> de zijne flankeerden,
+                        <lb/><del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >gereed
+                    waren,</del><!-- hoewel de komma niet is weggestreept, toch aldus gecodeerd -->
+                    muisde de sultan e<del type="instantcorrection" hand="#typist" rend="black ink"
+                        resp="#EB">n</del><add place="overwritten" hand="#typist" rend="black ink"
+                        resp="#EB">r</add> in het <del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">n</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">g</add>eniep van door . </p>
+                <p style="text-indent: 50px;"> Hij had dan een ganschen dag langsheen de kust ge<del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >wandeld</del><add place="supralinear" hand="#RB" rend="deepblack ink"
+                        resp="#EB">dwaald</add>. Een <lb/>genot was
+                    het:<!-- hier geen spatie voor de dubbele punt--> eindelijk eens een horizont te
+                    zien die niet bevlekt <lb/>was met de twee ruggen en de twee bolhoedjes van de
+                        <del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">twee</del>
+                    agenten <lb/>in burgerskledij die hem steeds voorafstapten. De branding bloei<lb
+                        rend="hyphen"/>de<add place="inline" hand="#RB" rend="grey pencil"
+                        resp="#EB"><metamark ref="#tsB_3r_margin1"/></add>
+                    <add place="marginleft" xml:id="tsB_3r_margin1"><metamark>12</metamark><note>Dit
+                            teken verwijst naar de paginanummering van de drukproef.</note></add>
+                    een rand van witte anjelieren langsheen het zeeperk. Als een her<lb
+                        rend="hyphen"/>der die een kudde weidt, deed Shiriar <del type="overwritten"
+                        hand="#RB" rend="deepblack ink" resp="#EB"><unclear>x</unclear></del><add
+                        place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">d</add>en
+                    zwerm der meeuwen van
+                        <lb/><choice><sic>gofbreker</sic><corr>golfbreker</corr></choice> tot go<del
+                        type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">r</del><add
+                        place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                    >l</add>fbreker de lucht ingaan. Als danseressen die die <lb/>handen naar mekaar
+                        re<del type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >e</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >i</add>ken, zoo strekten de geuniformeerde vogels de <lb/>vleugels <del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">uit</del> en
+                    dreven vóór zijn stappen uit.</p>
+
+                <p style="text-indent: 50px;"> Moe en hongerig was hij in den namiddag den <del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >speel</del>tuin van een <lb/>boerenherberg
+                    binnengelopen<!-- inktvlekje? --> waar kinders op schommels en op een
+                    <lb/>kleine paardjesmolen speelden. Duiven liepen hun til in en uit
+                    <lb/>doorheen een gordijn<del type="crossedOut" hand="#RB" rend="deepblack ink"
+                        resp="#EB">tje van</del>
+                    <add place="infralinear" hand="#RB" rend="deepblack ink" resp="#EB">kleine</add>
+                    staafjes als een turntoestel in <lb/>miniatuur.</p>
+                <p style="text-indent: 50px;"> Per abuus<!-- spelling checken in woordenboek --> had
+                    de sultan <del type="instantcorrection" hand="#typist" rend="black ink"
+                        resp="#EB">een</del> tegen een tafeltje gesto<add place="supralinear"
+                        hand="#RB" rend="deepblack ink" resp="#EB">o</add>ten, zooda<unclear
+                        reason="illegible">t</unclear>
+                    <lb/>een stortend teekopje<!-- spelling checken in w-boek --> de vest van een
+                        he<del type="instantcorrection" hands="#typist" rend="black ink" resp="#EB"
+                        >i</del><add place="overwritten" hand="#typist" rend="black ink" resp="#EB"
+                        >e</add>r bemorst had. De vent was <lb/>woedend en maakte <del>Shiriar</del>
+                    <add place="marginleft" hand="#RB" rend="deepblack ink" resp="#EB">den
+                        bedremmelden <del type="crossedOut" hand="#RB" rend="deepblack ink"
+                            resp="#EB">man</del>
+                        <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB"
+                            >Sultan</add></add> uit voor " lompen boer ". Zalig was het <lb/><del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">zich aldus te
+                        laten beledigen</del>
+                    <add place="marginleft" hand="#RB" rend="deepblack ink" resp="#EB">in die
+                        stortbui van beleedigingen te staan; heerlijk om</add> excuus te moeten <del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">aanbieden</del>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB"
+                    >vragen</add>.</p>
+                <p style="text-indent: 50px;"> Daarna was hij verdwaald in een dennenboschje en laat
+                    in den <lb/>avond in een dorp terecht gekomen<add place="inline" hand="#RB"
+                        rend="deepblack ink" resp="#EB">,</add> waar hij in een klein hotel<add
+                        place="inline" hand="#RB" rend="deepblack ink" resp="#EB">l</add>etje
+                    <lb/>logies had gevonden.</p>
+                <p style="text-indent: 50px;"> Maar wat een herrie nadien !... De <add
+                        place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >gefopten</add> detektieven waren de kluts <lb/>kwijt geraakt, het nieuws
+                    van zijn verdwijning werd<metamark function="disconnect"/>naar Bagdad ge<lb
+                        rend="hyphen"/>seind. Denzelfden avond riep een ex<del type="overwritten"
+                        hand="#RB" rend="deepblack ink" resp="#EB">m</del><add place="overwritten"
+                        hand="#RB" rend="deepblack ink" resp="#EB">t</add>ra-uitgave der dagbladen
+                    <lb/>het ontstellend bericht over den " geschaakten sultan ". <del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">Het</del>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">Die
+                        escapade</add> bezorg<lb rend="hyphen"/>de hem een beleefd standje van wege
+                    den Groot Vizier<!-- los geschreven (soms ook met verbindingsstreepje) -->; en
+                    ook de <lb/>minister van Buitenlandsche Zaken van het land dat hem " gastvrij<lb
+                        rend="hyphen"/>heid verleende " maakte, in den loop van een glimlachend
+                        beleefd<lb rend="hyphen"/>heidsbezoek, een voorzichtige
+                    alluzie<!-- spelling controleren in woordenboek --> aan " gebeurtenissen die
+                        de<del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">n</del>
+                    <lb/>goede<del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >n</del> faam der zeekust in opspraak konden brengen "....<add
+                        place="inline" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            ref="#tsB_3r_margin2"/></add>
+                    <add place="marginleft" hand="#RB" rend="grey pencil" resp="#EB"><metamark
+                            xml:id="tsB_3r_margin2">13</metamark><note>Dit teken en nummer verwijzen
+                            naar de paginanummering van de drukproef.</note></add></p>
+                <p style="text-indent: 50px;"> Dan is hij weer geworden : Shiriar, de heerscher
+                    aller Arabie<lb rend="hyphen"/>ren<del type="overwritten" hand="#RB"
+                        rend="deepblack ink" resp="#EB">.</del><add place="overwritten" hand="#RB"
+                        rend="deepblack ink" resp="#EB">,</add>
+                    <del type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">M</del><add
+                        place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">m</add>aar in
+                    werkelijkheid een gevangene <del type="crossedOut" hand="#RB"
+                        rend="deepblack ink" resp="#EB">in zijn</del>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">tusschen
+                        deze</add> paleismuren, ge<lb rend="hyphen"/>vangene van het protocol, de
+                        traditie<del type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >n</del> en de eigen lafheid...</p>
+                <space unit="lines" quantity="1"/>
+                <p style="text-align: center; display: block;">*<lb/>**</p>
+                <space unit="lines" quantity="1"/>
+                <p style="text-indent: 50px;"> Een klopje op de deur wekt <del type="crossedOut"
+                        hand="#RB" rend="deepblack ink" resp="#EB">hem</del>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">den
+                        vorst</add> uit zijn mijmeren.<add place="inline" hand="#RB"
+                        rend="deepblack ink" resp="#EB">..</add></p>
+                <p style="text-indent: 50px;">
+                    <del type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >a</del><add place="overwritten" hand="#typist" resp="#EB" rend="black ink"
+                        >"</add> Daar hebben we nogmaa<del type="instantcorrection" hand="#typist"
+                        rend="black ink" resp="#EB">s</del><add place="overwritten" hand="#typist"
+                        rend="black ink" resp="#EB">l</add>s de afgezante van den harem<del
+                        type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                            ><unclear>x</unclear></del><add place="overwritten" hand="#RB"
+                        rend="deepblack ink" resp="#EB">!</add> " denkt <lb/>Shiriar.</p>
+                <p style="text-indent: 50px;"> En inderdaad, een meisje treedt binnen. Ze draagt een
+                        bureel<lb rend="hyphen"/>kleedje, aan haar gordel een <del
+                        type="instantcorrection" hand="#typist" rend="black ink" resp="#EB"
+                        >p</del><add place="overwritten" rend="black ink" hand="#typist" resp="#EB"
+                        >b</add>loknoot, een potlood in <del type="crossedOut" hand="#RB"
+                        rend="deepblack ink" resp="#EB">haar</del>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">de</add>
+                    hand. <lb/>Gekostumeerd als dactylo<add place="inline" hand="#RB"
+                        rend="deepblack ink" resp="#EB">,</add> dus !... Waar die <del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >wellust</del><add place="supralinear" hand="#RB" rend="deepblack ink"
+                        resp="#EB"><unclear>sakkerste</unclear></add>commis<add place="supralinear"
+                        hand="#RB" rend="deepblack ink" resp="#EB">s</add>arissen hun <lb/><del
+                        type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >inspiratie</del>
+                    <add place="marginleft" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >fantasie</add> van<hi rend="updownconnect"/>daan halen<del
+                        type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">!</del><add
+                        place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">?</add>... ?
+                    Nou, physisch <del type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >ze</del>
+                    <add place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB">het</add>
+                    <add place="supralinear" hand="#RB" rend="deepblack ink" resp="#EB">meisje</add>
+                    niks b<del type="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >e</del><add place="overwritten" hand="#RB" rend="deepblack ink" resp="#EB"
+                        >i</add>zonders. <lb/>Het aangezi<del type="instantcorrection"
+                        hand="#typist" rend="black ink" resp="#EB">p</del><add place="overwritten"
+                        hand="#typist" rend="black ink" resp="#EB">c</add>ht ziekelijk bleek. De
+                        s<hi rend="updownconnect"/>chouders gebogen van deemoed of <lb/>anemie. En nerveus dat ze lijkt!...</p>
+                <p style="text-indent: 50px;">
+                    Om haar op haar gemakt te stellen, zegt de sultan :
+                    <lb/>" U k<seg type="transpose" xml:id="trans1_tsB-02r">m</seg><seg type="transpose" xml:id="trans2_tsB_02r">o</seg>t
+                </p>
+            </div>
+        </body>
+    </text>
+</TEI>
