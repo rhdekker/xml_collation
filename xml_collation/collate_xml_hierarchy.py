@@ -1,6 +1,8 @@
 from xml.dom.minidom import Element
 from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parseString, END_ELEMENT, parse
 
+from xml_collation.EditGraphAligner import EditGraphAligner
+
 """
  XML hierarchy collation using a pull parser and minidom
  @author: Ronald Haentjens Dekker
@@ -12,6 +14,7 @@ def convert_xml_file_into_string(xml):
     doc = parse(xml)
     # init output
     # NOTE: we start with output as a string
+    # we might want to make the tokens more complex to store the original location in xpath form
     output = ""
     for event, node in doc:
         if event == CHARACTERS:
@@ -28,37 +31,20 @@ def convert_xml_file_into_string(xml):
 output1 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsa.xml")
 output2 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsb.xml")
 
-
 print(output1)
 print(output2)
 
-#
-# output = Element("output")
-# open_elements = Stack()
-# open_elements.push(output)
-#
-#     if event == START_ELEMENT:
-#         # skip rdg element
-#         if node.localName == "rdg":
-#             continue
-#         # in case of add deal with overlapping hierarchies
-#         if node.localName == "add":
-#             # set type attribute to start and add node as a child to output
-#             node.setAttribute("type","start")
-#             open_elements.peek().appendChild(node)
-#         else:
-#             open_elements.peek().appendChild(node)
-#             open_elements.push(node)
-#     if event == END_ELEMENT:
-#         # skip rdg element
-#         if node.localName == "rdg":
-#             continue
-#         # in case of add deal with overlapping hierarchies
-#         if node.localName == "add":
-#             # create a clone of the node and set type attribute to end and add node as a child to output
-#             clone = node.cloneNode(False)
-#             clone.setAttribute("type","end")
-#             open_elements.peek().appendChild(clone)
-#         else:
-#             open_elements.pop()
-#
+# hmmm above we plak everything aan elkaar en hier slopen we het weer
+# we need to tokenize both strings
+tokens1 = output1.split()
+tokens2 = output2.split()
+# TODO: tokens needs to be made more unique (localName can be repeated)
+
+print(tokens1)
+print(tokens2)
+
+aligner = EditGraphAligner()
+alignment = aligner.align_table(tokens1, tokens2, None)
+
+print(alignment.keys())
+
