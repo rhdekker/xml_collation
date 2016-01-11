@@ -7,25 +7,30 @@ from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parseString, END_ELEMENT,
 """
 
 
-# init input
-doc = parse("../xml_source_transcriptions/liefde-tsa.xml")
+def convert_xml_file_into_string(xml):
+    # init input
+    doc = parse(xml)
+    # init output
+    # NOTE: we start with output as a string
+    output = ""
+    for event, node in doc:
+        if event == CHARACTERS:
+            continue
 
-# init output
-# NOTE: we start with output as a string
-output = ""
+        # debug
+        # print(event, node)
 
-for event, node in doc:
-    if event == CHARACTERS:
-        continue
+        if event == START_ELEMENT:
+            output += " " + node.localName
 
-    # debug
-    # print(event, node)
+    return output
 
-    if event == START_ELEMENT:
-        output += " " + node.localName
+output1 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsa.xml")
+output2 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsb.xml")
 
 
-print(output)
+print(output1)
+print(output2)
 
 #
 # output = Element("output")
