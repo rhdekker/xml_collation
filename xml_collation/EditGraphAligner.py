@@ -27,6 +27,8 @@ class EditGraphAligner(object):
         self.tokens_witness_b = tokens_witness_b
         self.length_witness_a = len(self.tokens_witness_a)
         self.length_witness_b = len(self.tokens_witness_b)
+
+        # clear table: fill table with empty nodes
         # Note: in a large table this init takes a lot of time
         self.table = [[EditGraphNode() for _ in range(self.length_witness_a+1)] for _ in range(self.length_witness_b+1)]
 
@@ -41,7 +43,7 @@ class EditGraphAligner(object):
         # note we traverse from right to left!
         self.last_x = self.length_witness_a
         self.last_y = self.length_witness_b
-        self.new_superwitness = []
+        self.new_super_witness = []
         # start lower right cell
         x = self.length_witness_a
         y = self.length_witness_b
@@ -69,10 +71,10 @@ class EditGraphAligner(object):
                         # addition?
                         x -= 1
         # process additions/omissions in the begin of the superbase/witness
-        self.add_to_superwitness(self.tokens_witness_a, self.tokens_witness_b, 0, 0)
+        self.add_to_super_witness(self.tokens_witness_a, self.tokens_witness_b, 0, 0)
         return alignment
 
-    def add_to_superwitness(self, witness_a, witness_b, x, y):
+    def add_to_super_witness(self, witness_a, witness_b, x, y):
         # detect additions/omissions compared to the superbase
         # print self.last_x - x - 1, self.last_y - y - 1
         if self.last_x - x - 1 > 0 or self.last_y - y - 1 > 0:
@@ -81,15 +83,16 @@ class EditGraphAligner(object):
             omitted_base = witness_a[x:self.last_x - 1]
             # print omitted_base
             added_witness = witness_b[y:self.last_y - 1]
-            # update superbase with additions, omissions
-            self.new_superwitness = added_witness + self.new_superwitness
-            self.new_superwitness = omitted_base + self.new_superwitness
+            # update super witness with additions, omissions
+            # TODO: it is nicer to do this with insert(0, ) or better extend(0, )
+            self.new_super_witness = added_witness + self.new_super_witness
+            self.new_super_witness = omitted_base + self.new_super_witness
 
     def _process_cell(self, witness_a, witness_b, alignment, x, y):
         cell = self.table[y][x]
         # process segments
         if cell.match:
-            self.add_to_superwitness(witness_a, witness_b, x, y)
+            self.add_to_super_witness(witness_a, witness_b, x, y)
             self.last_x = x
             self.last_y = y
         # process alignment
@@ -99,7 +102,7 @@ class EditGraphAligner(object):
             alignment[token2] = token
 #             print("match")
 #             print(token2)
-            self.new_superwitness.insert(0, token)
+            self.new_super_witness.insert(0, token2)
         return cell
 
     # This function traverses the table diagonally and scores each cell.

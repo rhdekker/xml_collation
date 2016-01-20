@@ -47,19 +47,19 @@ print(tokens2)
 
 aligner = EditGraphAligner()
 alignment = aligner.align_table(tokens1, tokens2)
+super_witness = aligner.new_super_witness
 
 # print(alignment.keys())
 
 # We want to show the result
-# NOTE: This code only shows aligned tokens and added tokens, omitted tokens are not yet shown!
-# NOTE: Hmmm maybe the superbase is handy for this
-# we traverse over the tokens in the second witness:
+# we traverse over the tokens in the super witness:
 result = []
-for token in tokens2:
+for token in super_witness:
     if token in alignment:
         result.append(token.content)
     else:
-        result.append("+"+token.content)
+        # TODO: determine whether a variant is addition (+) or an omission (-)
+        result.append("*"+token.content)
 
 
 print(result)
