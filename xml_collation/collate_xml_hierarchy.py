@@ -46,7 +46,7 @@ print(tokens2)
 
 
 aligner = EditGraphAligner()
-alignment = aligner.align_table(tokens1, tokens2, None)
+alignment = aligner.align_table(tokens1, tokens2)
 
 # print(alignment.keys())
 

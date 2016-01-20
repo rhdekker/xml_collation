@@ -22,7 +22,7 @@ class EditGraphAligner(object):
     def __init__(self):
         self.scorer = Scorer()
 
-    def align_table(self, tokens_witness_a, tokens_witness_b, token_to_vertex):
+    def align_table(self, tokens_witness_a, tokens_witness_b):
         self.tokens_witness_a = tokens_witness_a
         self.tokens_witness_b = tokens_witness_b
         self.length_witness_a = len(self.tokens_witness_a)
@@ -33,10 +33,10 @@ class EditGraphAligner(object):
         # per diagonal calculate the score (taking into account the three surrounding nodes)
         self.traverse_table_diagonally_and_score_cells()
 
-        alignment = self.calculate_alignment_and_superwitness(token_to_vertex)
+        alignment = self.calculate_alignment_and_superwitness()
         return alignment
 
-    def calculate_alignment_and_superwitness(self, token_to_vertex):
+    def calculate_alignment_and_superwitness(self):
         alignment = {}
         self.additions = []
         self.omissions = []
@@ -50,7 +50,7 @@ class EditGraphAligner(object):
         y = self.length_witness_b
         # work our way to the upper left
         while x > 0 and y > 0:
-            self._process_cell(token_to_vertex, self.tokens_witness_a, self.tokens_witness_b, alignment, x, y)
+            self._process_cell(self.tokens_witness_a, self.tokens_witness_b, alignment, x, y)
             # examine neighbor nodes
             nodes_to_examine = set()
             nodes_to_examine.add(self.table[y][x - 1])
@@ -92,7 +92,7 @@ class EditGraphAligner(object):
             self.new_superwitness = added_witness + self.new_superwitness
             self.new_superwitness = omitted_base + self.new_superwitness
 
-    def _process_cell(self, token_to_vertex, witness_a, witness_b, alignment, x, y):
+    def _process_cell(self, witness_a, witness_b, alignment, x, y):
         cell = self.table[y][x]
         # process segments
         if cell.match:
