@@ -31,18 +31,20 @@ class EditGraphAligner(object):
         self.table = [[EditGraphNode() for _ in range(self.length_witness_a+1)] for _ in range(self.length_witness_b+1)]
 
         # per diagonal calculate the score (taking into account the three surrounding nodes)
-        self.traverse_diagonally()
+        self.traverse_table_diagonally_and_score_cells()
 
+        alignment = self.calculate_alignment_and_superwitness(token_to_vertex)
+        return alignment
+
+    def calculate_alignment_and_superwitness(self, token_to_vertex):
         alignment = {}
         self.additions = []
         self.omissions = []
-
         # segment stuff
         # note we traverse from right to left!
         self.last_x = self.length_witness_a
         self.last_y = self.length_witness_b
-        self.new_superbase=[]
-
+        self.new_superwitness = []
         # start lower right cell
         x = self.length_witness_a
         y = self.length_witness_b
@@ -51,29 +53,29 @@ class EditGraphAligner(object):
             self._process_cell(token_to_vertex, self.tokens_witness_a, self.tokens_witness_b, alignment, x, y)
             # examine neighbor nodes
             nodes_to_examine = set()
-            nodes_to_examine.add(self.table[y][x-1])
-            nodes_to_examine.add(self.table[y-1][x])
-            nodes_to_examine.add(self.table[y-1][x-1])
+            nodes_to_examine.add(self.table[y][x - 1])
+            nodes_to_examine.add(self.table[y - 1][x])
+            nodes_to_examine.add(self.table[y - 1][x - 1])
             # calculate the maximum scoring parent node
             parent_node = max(nodes_to_examine, key=lambda x: x.g)
             # move position
-            if self.table[y-1][x-1] == parent_node:
+            if self.table[y - 1][x - 1] == parent_node:
                 # another match or replacement
                 y -= 1
                 x -= 1
             else:
-                if self.table[y-1][x] == parent_node:
+                if self.table[y - 1][x] == parent_node:
                     # omission?
                     y -= 1
                 else:
-                    if self.table[y][x-1] == parent_node:
+                    if self.table[y][x - 1] == parent_node:
                         # addition?
                         x -= 1
         # process additions/omissions in the begin of the superbase/witness
-        self.add_to_superbase(self.tokens_witness_a, self.tokens_witness_b, 0, 0)
+        self.add_to_superwitness(self.tokens_witness_a, self.tokens_witness_b, 0, 0)
         return alignment
 
-    def add_to_superbase(self, witness_a, witness_b, x, y):
+    def add_to_superwitness(self, witness_a, witness_b, x, y):
         # detect additions/omissions compared to the superbase
         # print self.last_x - x - 1, self.last_y - y - 1
         if self.last_x - x - 1 > 0 or self.last_y - y - 1 > 0:
@@ -87,14 +89,14 @@ class EditGraphAligner(object):
             # print added_witness
             self.additions.extend(added_witness)
             # update superbase with additions, omissions
-            self.new_superbase = added_witness + self.new_superbase
-            self.new_superbase = omitted_base + self.new_superbase
+            self.new_superwitness = added_witness + self.new_superwitness
+            self.new_superwitness = omitted_base + self.new_superwitness
 
     def _process_cell(self, token_to_vertex, witness_a, witness_b, alignment, x, y):
         cell = self.table[y][x]
         # process segments
         if cell.match:
-            self.add_to_superbase(witness_a, witness_b, x, y)
+            self.add_to_superwitness(witness_a, witness_b, x, y)
             self.last_x = x
             self.last_y = y
         # process alignment
@@ -104,12 +106,12 @@ class EditGraphAligner(object):
             alignment[token2] = token
 #             print("match")
 #             print(token2)
-            self.new_superbase.insert(0, token)
+            self.new_superwitness.insert(0, token)
         return cell
 
     # This function traverses the table diagonally and scores each cell.
     # Original function from Mark Byers; translated from C into Python.
-    def traverse_diagonally(self):
+    def traverse_table_diagonally_and_score_cells(self):
         m = self.length_witness_b+1
         n = self.length_witness_a+1
         for _slice in range(0, m + n - 1, 1):
