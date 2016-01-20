@@ -38,9 +38,6 @@ class EditGraphAligner(object):
 
     def calculate_alignment_and_superwitness(self):
         alignment = {}
-        self.additions = []
-        self.omissions = []
-        # segment stuff
         # note we traverse from right to left!
         self.last_x = self.length_witness_a
         self.last_y = self.length_witness_b
@@ -83,11 +80,7 @@ class EditGraphAligner(object):
             # create new segment
             omitted_base = witness_a[x:self.last_x - 1]
             # print omitted_base
-            # add segment to the omissions
-            self.omissions.extend(omitted_base)
             added_witness = witness_b[y:self.last_y - 1]
-            # print added_witness
-            self.additions.extend(added_witness)
             # update superbase with additions, omissions
             self.new_superwitness = added_witness + self.new_superwitness
             self.new_superwitness = omitted_base + self.new_superwitness
