@@ -57,7 +57,7 @@ class Scorer(object):
     # -1 = NO MATCH
     # 1 = PARTIAL MATCH
     def match(self, token_a, token_b):
-        match = token_a == token_b
+        match = token_a.content == token_b.content
         if match:
             # Check whether the user has supplied a properties filter
             if not self.properties_filter:

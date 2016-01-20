@@ -9,13 +9,24 @@ from xml_collation.EditGraphAligner import EditGraphAligner
 """
 
 
+class Token(object):
+    def __init__(self, content):
+        self.content = content
+
+    def __str__(self):
+        return self.content
+
+    def __repr__(self):
+        return self.content
+
+
 def convert_xml_file_into_string(xml):
     # init input
     doc = parse(xml)
     # init output
-    # NOTE: we start with output as a string
-    # we might want to make the tokens more complex to store the original location in xpath form
-    output = ""
+    # NOTE: tokens objects are made so to make them unique (localName can be repeated)
+    # NOTE: we might want to make the tokens more complex to store the original location in xpath form
+    output = []
     for event, node in doc:
         if event == CHARACTERS:
             continue
@@ -24,7 +35,7 @@ def convert_xml_file_into_string(xml):
         # print(event, node)
 
         if event == START_ELEMENT:
-            output += " " + node.localName
+            output.append(Token(node.localName))
 
     return output
 
@@ -34,14 +45,8 @@ output2 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsb.
 print(output1)
 print(output2)
 
-# hmmm above we plak everything aan elkaar en hier slopen we het weer
-# we need to tokenize both strings
-tokens1 = output1.split()
-tokens2 = output2.split()
-# TODO: tokens needs to be made more unique (localName can be repeated)
-
-print(tokens1)
-print(tokens2)
+tokens1 = output1
+tokens2 = output2
 
 aligner = EditGraphAligner()
 alignment = aligner.align_table(tokens1, tokens2, None)
