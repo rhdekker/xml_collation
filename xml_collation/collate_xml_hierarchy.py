@@ -51,5 +51,18 @@ tokens2 = output2
 aligner = EditGraphAligner()
 alignment = aligner.align_table(tokens1, tokens2, None)
 
-print(alignment.keys())
+#print(alignment.keys())
 
+# We want to show the result
+# NOTE: This code only shows aligned tokens and added tokens, omitted tokens are not yet shown!
+# NOTE: Hmmm maybe the superbase is handy for this
+# we traverse over the tokens in the second witness:
+result = []
+for token in output2:
+    if token in alignment:
+        result.append(token.content)
+    else:
+        result.append("+"+token.content)
+
+
+print(result)
