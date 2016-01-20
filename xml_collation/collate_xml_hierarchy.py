@@ -1,5 +1,4 @@
-from xml.dom.minidom import Element
-from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parseString, END_ELEMENT, parse
+from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse
 
 from xml_collation.EditGraphAligner import EditGraphAligner
 
@@ -20,13 +19,13 @@ class Token(object):
         return self.content
 
 
-def convert_xml_file_into_string(xml):
+def convert_xml_file_into_tokens(xml):
     # init input
     doc = parse(xml)
     # init output
     # NOTE: tokens objects are made so to make them unique (localName can be repeated)
     # NOTE: we might want to make the tokens more complex to store the original location in xpath form
-    output = []
+    tokens = []
     for event, node in doc:
         if event == CHARACTERS:
             continue
@@ -35,30 +34,28 @@ def convert_xml_file_into_string(xml):
         # print(event, node)
 
         if event == START_ELEMENT:
-            output.append(Token(node.localName))
+            tokens.append(Token(node.localName))
 
-    return output
+    return tokens
 
-output1 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsa.xml")
-output2 = convert_xml_file_into_string("../xml_source_transcriptions/liefde-tsb.xml")
+tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsa.xml")
+tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsb.xml")
 
-print(output1)
-print(output2)
+print(tokens1)
+print(tokens2)
 
-tokens1 = output1
-tokens2 = output2
 
 aligner = EditGraphAligner()
 alignment = aligner.align_table(tokens1, tokens2, None)
 
-#print(alignment.keys())
+# print(alignment.keys())
 
 # We want to show the result
 # NOTE: This code only shows aligned tokens and added tokens, omitted tokens are not yet shown!
 # NOTE: Hmmm maybe the superbase is handy for this
 # we traverse over the tokens in the second witness:
 result = []
-for token in output2:
+for token in tokens2:
     if token in alignment:
         result.append(token.content)
     else:
