@@ -47,19 +47,20 @@ print(tokens2)
 
 aligner = EditGraphAligner()
 alignment = aligner.align_table(tokens1, tokens2)
-super_witness = aligner.new_super_witness
+segments = aligner.segments
 
 # print(alignment.keys())
 
 # We want to show the result
-# we traverse over the tokens in the super witness:
+# we traverse over the tokens in the segments:
 result = []
-for token in super_witness:
-    if token in alignment:
-        result.append(token.content)
-    else:
-        # TODO: determine whether a variant is addition (+) or an omission (-)
-        result.append("*"+token.content)
+for segment in segments:
+    for token in segment.tokens:
+        if token in alignment:
+            result.append(token.content)
+        else:
+            # TODO: determine whether a variant is addition (+) or an omission (-)
+            result.append("*"+token.content)
 
 
 print(result)
