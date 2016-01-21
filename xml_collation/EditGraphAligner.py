@@ -89,15 +89,15 @@ class EditGraphAligner(object):
     def add_to_segments(self, witness_a, witness_b, x, y):
         # detect additions/omissions compared to the first witness
         # print self.last_x - x - 1, self.last_y - y - 1
-        if self.last_x - x - 1 > 0 or self.last_y - y - 1 > 0:
+        if self.last_y - y - 1 > 0:
+            added_witness = Segment(witness_b[y:self.last_y - 1], False, True)
+            # update segments with additions, omissions
+            self.segments.insert(0, added_witness)
+        if self.last_x - x - 1 > 0:
             # print x, self.last_x, y, self.last_y
             # create new segment
             omitted_base = Segment(witness_a[x:self.last_x - 1], False, False)
             # print omitted_base
-            added_witness = Segment(witness_b[y:self.last_y - 1], False, True)
-            # update segments with additions, omissions
-            # TODO: empty check?
-            self.segments.insert(0, added_witness)
             self.segments.insert(0, omitted_base)
 
     def _process_cell(self, witness_a, witness_b, alignment, x, y):
