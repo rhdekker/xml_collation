@@ -55,12 +55,13 @@ segments = aligner.segments
 # we traverse over the tokens in the segments:
 result = []
 for segment in segments:
-    for token in segment.tokens:
-        if token in alignment:
-            result.append(token.content)
+    representation = ""
+    if not segment.aligned:
+        if segment.addition:
+            representation += "+"
         else:
-            # TODO: determine whether a variant is addition (+) or an omission (-)
-            result.append("*"+token.content)
+            representation += "-"
+    result.append(", ".join([representation+token.content for token in segment.tokens]))
 
 
 print(result)

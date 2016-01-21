@@ -18,10 +18,10 @@ class EditGraphNode(object):
 
 
 class Segment(object):
-    def __init__(self, tokens):
+    def __init__(self, tokens, aligned, addition):
         self.tokens = tokens
-        self.aligned = False
-        self.addition = False
+        self.aligned = aligned
+        self.addition = addition
 
     def __str__(self):
         return " ".join(self.tokens)
@@ -92,9 +92,9 @@ class EditGraphAligner(object):
         if self.last_x - x - 1 > 0 or self.last_y - y - 1 > 0:
             # print x, self.last_x, y, self.last_y
             # create new segment
-            omitted_base = Segment(witness_a[x:self.last_x - 1])
+            omitted_base = Segment(witness_a[x:self.last_x - 1], False, False)
             # print omitted_base
-            added_witness = Segment(witness_b[y:self.last_y - 1])
+            added_witness = Segment(witness_b[y:self.last_y - 1], False, True)
             # update segments with additions, omissions
             # TODO: empty check?
             self.segments.insert(0, added_witness)
@@ -115,7 +115,7 @@ class EditGraphAligner(object):
 #             print("match")
 #             print(token2)
             # TODO: it is not so nice that every aligned token is it's own segment.
-            self.segments.insert(0, Segment([token2]))
+            self.segments.insert(0, Segment([token2], True, False))
         return cell
 
     # This function traverses the table diagonally and scores each cell.
