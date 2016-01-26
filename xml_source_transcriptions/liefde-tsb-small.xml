@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader xml:lang="en" xmlns="">
+        <fileDesc>
+            <titleStmt>
+                <title xml:id="liefde-tsb">Typoscript B "Wat is liefde zonder verleiding"</title>
+                <author xml:id="RB">
+                    <name>Raymond Brulez</name>
+                </author>
+                <author xml:id="typist">
+                    <name>Raymond Brulez</name>
+                </author>
+                <principal xml:id="EB">
+                    <name>Elli Bleeker</name>
+                </principal>
+                <principal xml:id="DVH">
+                    <name>Dirk Van Hulle</name>
+                </principal>
+                <principal xml:id="VN">
+                    <name>Vincent Neyt</name>
+                    <principal xml:id="SF">
+                        <name>Sarah Fierens</name>
+                    </principal>
+                </principal>
+                <funder>
+                    <name>Centre for Manuscript Genetics (UA)</name>
+                    <name>DiXiT (Digital Scholarly Editions Initial Training Network)</name>
+                    <address>
+  <addrLine>Universiteit Antwerpen (UA)</addrLine>
+  <addrLine>Prinsstraat 13</addrLine>
+  <addrLine>B-2000 Antwerpen</addrLine>
+  <addrLine>Belgium</addrLine>
+  <addrLine>tel: +32 (0)3 220 42 46</addrLine>
+  <addrLine>email: dirk.vanhulle@ua.ac.be</addrLine>
+  </address>
+                </funder>
+                <respStmt>
+                    <name>Dirk Van Hulle</name>
+                    <resp>Brulez Archive coordinator, encoding scheme, TEI customization</resp>
+                </respStmt>
+                <respStmt>
+                    <name>Vincent Neyt</name>
+                    <resp>Project architecture, encoding scheme, TEI customization</resp>
+                </respStmt>
+                <respStmt>
+                    <name>Elli Bleeker</name>
+                    <resp>text encoding</resp>
+                </respStmt>
+            </titleStmt>
+            <extent/>
+            <publicationStmt>
+                <authority>Centre for Manuscript Genetics (University of Antwerp)</authority>
+                <pubPlace>Antwerp</pubPlace>
+                <availability status="restricted">
+                    <p>Not to be distributed outside the project</p>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <bibl><!-- Bibliographic citiation of the typescript-->Typescript B of the
+                    framestory "Wat is liefde zonder verleiding", part of the collection of stories
+                    "Wat is liefde zonder verleiding" door Raymond Brulez (preliminary reference:
+                    B917_2bis_B5_tsB_Liefde)</bibl>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <projectDesc>
+                <p><!-- Detailed description of the purpose for which this document is encoded, together with
+     information concerning the encoding practice.--></p>
+            </projectDesc>
+            <editorialDecl>
+                <p>
+                    <!-- details about the editorial principles and practice applied during the encoding of the ts -->
+                </p>
+            </editorialDecl>
+            <tagsDecl>
+                <rendition xml:id="blackink"/>
+                <rendition xml:id="deepblackink"/>
+                <rendition xml:id="greypencil"/>
+                <rendition xml:id="bluepencil"/>
+                <rendition xml:id="redpencil"/>
+            </tagsDecl>
+        </encodingDesc>
+        <profileDesc>
+            <creation>
+                <date when="1930">1930</date>
+                <!-- specify date! -->
+            </creation>
+            <langUsage>
+                <language ident="nl" usage="80">Dutch</language>
+                <language ident="fr" usage="10">French</language>
+                <language ident="la" usage="10">Latin</language>
+            </langUsage>
+            <handNotes>
+                <handNote scope="major" medium="black_ink" xml:id="typist"/>
+                <handNote medium="black_ink"/>
+                <handNote medium="blueblack_ink"/>
+                <handNote medium="deepblack_ink"/>
+                <handNote medium="grey_pencil"/>
+                <handNote medium="blue_pencil"/>
+                <handNote medium="red_pencil"/>
+            </handNotes>
+            <listTranspose>
+                <transpose>
+                    <ptr target="#trans2_tsB_02r"/>
+                    <ptr target="#trans1_tsB_02r"/>
+                </transpose>
+            </listTranspose>
+        </profileDesc>
+        <revisionDesc/>
+    </teiHeader>
+</TEI>

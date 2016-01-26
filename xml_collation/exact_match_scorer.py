@@ -2,7 +2,7 @@
  This class scores cells in the edit graph table.
  @author: Ronald Haentjens Dekker
 """
-from Levenshtein._levenshtein import ratio
+#from Levenshtein._levenshtein import ratio
 
 
 class Scorer(object):

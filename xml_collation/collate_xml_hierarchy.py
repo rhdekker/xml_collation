@@ -1,4 +1,5 @@
-from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse
+from xml.dom.minidom import Element
+from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse, END_ELEMENT
 
 from xml_collation.EditGraphAligner import EditGraphAligner
 
@@ -36,32 +37,62 @@ def convert_xml_file_into_tokens(xml):
         if event == START_ELEMENT:
             tokens.append(Token(node.localName))
 
+        elif event == END_ELEMENT:
+            tokens.append(Token("/"+node.localName))
+
     return tokens
 
-tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsa.xml")
-tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsb.xml")
+
+def print_segments(segments):
+    # We want to show the result
+    # we traverse over the tokens in the segments:
+    result = []
+    for segment in segments:
+        representation = ""
+        if not segment.aligned:
+            if segment.addition:
+                representation += "+"
+            else:
+                representation += "-"
+        result.append(", ".join([representation+token.content for token in segment.tokens]))
+
+    print(result)
+
+def convert_segments_into_result_dom(segments):
+    # a = ""
+    # a.
+    root = Element("root")
+    # root.
+    latest = root
+    for segment in segments:
+        # for now we only handle aligned segments
+        if segment.aligned:
+            for token in segment.tokens:
+                if token.content.startswith("/"):
+                    latest = latest.parentNode
+                else:
+                    # print("adding "+token.content+" to "+str(latest))
+                    node = Element(token.content)
+                    latest.appendChild(node)
+                    latest = node
+                    pass
+
+    return root
+
+# convert XML files into tokens
+tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsa-small.xml")
+tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsb-small.xml")
 
 print(tokens1)
 print(tokens2)
 
-
+# align sequences of tokens. Results in segments.
 aligner = EditGraphAligner()
 alignment = aligner.align_table(tokens1, tokens2)
 segments = aligner.segments
 
-# print(alignment.keys())
+# convert segments in dom tree
+root = convert_segments_into_result_dom(segments)
 
-# We want to show the result
-# we traverse over the tokens in the segments:
-result = []
-for segment in segments:
-    representation = ""
-    if not segment.aligned:
-        if segment.addition:
-            representation += "+"
-        else:
-            representation += "-"
-    result.append(", ".join([representation+token.content for token in segment.tokens]))
+print(root.toxml())
 
-
-print(result)
