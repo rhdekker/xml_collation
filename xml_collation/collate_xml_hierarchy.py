@@ -82,6 +82,20 @@ def convert_segments_into_result_dom(segments):
                     node = Element(token.content)
                     latest.appendChild(node)
                     latest = node
+        else:
+            for token in segment.tokens:
+                # skip text nodes in case of a change for now
+                if not isinstance(token, TextToken):
+                    if token.content.startswith("/"):
+                        latest = latest.parentNode
+                    else:
+                        # print("adding "+token.content+" to "+str(latest))
+                        node = Element(token.content)
+                        # set attribute to mark change!
+                        node.setAttribute("CX", "change")
+                        latest.appendChild(node)
+                        latest = node
+
 
     return root
 
