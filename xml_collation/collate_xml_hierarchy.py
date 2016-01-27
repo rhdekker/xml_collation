@@ -1,4 +1,4 @@
-from xml.dom.minidom import Element, Text
+from xml.dom.minidom import getDOMImplementation
 from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse, END_ELEMENT
 
 from xml_collation.EditGraphAligner import EditGraphAligner
@@ -65,21 +65,24 @@ def print_segments(segments):
 
 
 def convert_segments_into_result_dom(segments):
-    root = Element("root")
+    # create new document
+    impl = getDOMImplementation()
+    newdoc = impl.createDocument(None, "root", None)
+    root = newdoc.documentElement
     latest = root
+    # process the segments and fill document
     for segment in segments:
         # for now we only handle aligned segments
         if segment.aligned:
             for token in segment.tokens:
                 if isinstance(token, TextToken):
-                    t = Text()
-                    t.data = token.content
+                    t = newdoc.createTextNode(token.content)
                     latest.appendChild(t)
                 elif token.content.startswith("/"):
                     latest = latest.parentNode
                 else:
                     # print("adding "+token.content+" to "+str(latest))
-                    node = Element(token.content)
+                    node = newdoc.createElement(token.content)
                     latest.appendChild(node)
                     latest = node
         else:
@@ -90,13 +93,11 @@ def convert_segments_into_result_dom(segments):
                         latest = latest.parentNode
                     else:
                         # print("adding "+token.content+" to "+str(latest))
-                        node = Element(token.content)
+                        node = newdoc.createElement(token.content)
                         # set attribute to mark change!
                         node.setAttribute("CX", "change")
                         latest.appendChild(node)
                         latest = node
-
-
     return root
 
 # convert XML files into tokens
