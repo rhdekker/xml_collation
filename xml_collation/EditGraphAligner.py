@@ -75,12 +75,12 @@ class EditGraphAligner(object):
                 y -= 1
                 x -= 1
             else:
+                # check whether edit operation is an omission
                 if self.table[y - 1][x] == parent_node:
-                    # omission?
                     y -= 1
                 else:
+                    # check whether edit operation is an addition
                     if self.table[y][x - 1] == parent_node:
-                        # addition?
                         x -= 1
         # process additions/omissions in the beginning of the witnesses
         self.add_to_segments(self.tokens_witness_a, self.tokens_witness_b, 0, 0)

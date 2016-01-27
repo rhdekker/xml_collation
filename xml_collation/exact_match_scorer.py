@@ -25,11 +25,13 @@ class Scorer(object):
             table_node.g = parent_node.g - 1
             return
 
-        # it is either an add/delete or replacement (so an add and a delete)
-        # it is a replacement
+        # we score differently depending on the type of edit operation
+        # edit operation 0: it is either a match or a replacement (so an add and a delete)
+        # edit operation 1: it is either an add/delete
         if edit_operation == 0:
+            # it is a match or a replacement
             match = self.match_function(token_a, token_b)
-#             print("testing "+token_a.token_string+" and "+token_b.token_string+" "+str(match))
+            # print("testing "+token_a.token_string+" and "+token_b.token_string+" "+str(match))
             # match = token_a.token_string == token_b.token_string
             # based on match or not and parent_node calculate new score
             if match==0:
@@ -38,7 +40,7 @@ class Scorer(object):
                 # do not change score for now
                 table_node.g = parent_node.g
                 # count segments
-                if parent_node.match == False:
+                if not parent_node.match:
                     table_node.segments = parent_node.segments + 1
                 return
             if match==1:
@@ -47,8 +49,8 @@ class Scorer(object):
             else:
                 table_node.g = parent_node.g - 2
                 return
-        # it is an add/delete
         else:
+            # it is an add/delete
             table_node.g = parent_node.g - 1
             return
 
