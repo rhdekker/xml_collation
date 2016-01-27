@@ -1,4 +1,4 @@
-from xml.dom.minidom import Element
+from xml.dom.minidom import Element, Text
 from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse, END_ELEMENT
 
 from xml_collation.EditGraphAligner import EditGraphAligner
@@ -20,6 +20,10 @@ class Token(object):
         return self.content
 
 
+class TextToken(Token):
+    pass
+
+
 def convert_xml_file_into_tokens(xml):
     # init input
     doc = parse(xml)
@@ -28,13 +32,14 @@ def convert_xml_file_into_tokens(xml):
     # NOTE: we might want to make the tokens more complex to store the original location in xpath form
     tokens = []
     for event, node in doc:
-        if event == CHARACTERS:
-            continue
-
         # debug
         # print(event, node)
+        if event == CHARACTERS:
+            # skip insignificant whitespace
+            if node.data.strip():
+                tokens.append(TextToken(node.data))
 
-        if event == START_ELEMENT:
+        elif event == START_ELEMENT:
             tokens.append(Token(node.localName))
 
         elif event == END_ELEMENT:
@@ -58,24 +63,25 @@ def print_segments(segments):
 
     print(result)
 
+
 def convert_segments_into_result_dom(segments):
-    # a = ""
-    # a.
     root = Element("root")
-    # root.
     latest = root
     for segment in segments:
         # for now we only handle aligned segments
         if segment.aligned:
             for token in segment.tokens:
-                if token.content.startswith("/"):
+                if isinstance(token, TextToken):
+                    t = Text()
+                    t.data = token.content
+                    latest.appendChild(t)
+                elif token.content.startswith("/"):
                     latest = latest.parentNode
                 else:
                     # print("adding "+token.content+" to "+str(latest))
                     node = Element(token.content)
                     latest.appendChild(node)
                     latest = node
-                    pass
 
     return root
 
@@ -94,5 +100,5 @@ segments = aligner.segments
 # convert segments in dom tree
 root = convert_segments_into_result_dom(segments)
 
-print(root.toxml())
+print(root.toprettyxml())
 
