@@ -34,7 +34,7 @@ class EditGraphAligner(object):
     def __init__(self):
         self.scorer = Scorer()
 
-    def align_table(self, tokens_witness_a, tokens_witness_b):
+    def align(self, tokens_witness_a, tokens_witness_b):
         self.tokens_witness_a = tokens_witness_a
         self.tokens_witness_b = tokens_witness_b
         self.length_witness_a = len(self.tokens_witness_a)

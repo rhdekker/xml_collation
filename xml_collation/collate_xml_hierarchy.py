@@ -109,7 +109,7 @@ print(tokens2)
 
 # align sequences of tokens. Results in segments.
 aligner = EditGraphAligner()
-alignment = aligner.align_table(tokens1, tokens2)
+alignment = aligner.align(tokens1, tokens2)
 segments = aligner.segments
 
 # convert segments in dom tree
