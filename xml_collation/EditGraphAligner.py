@@ -45,12 +45,12 @@ class EditGraphAligner(object):
         self.table = [[EditGraphNode() for _ in range(self.length_witness_a+1)] for _ in range(self.length_witness_b+1)]
 
         # per diagonal calculate the score (taking into account the three surrounding nodes)
-        self.traverse_table_diagonally_and_score_cells()
+        self.traverse_table_diagonally(self.score_cell)
 
-        alignment = self.calculate_alignment_and_superwitness()
+        alignment = self.calculate_alignment_and_segments()
         return alignment
 
-    def calculate_alignment_and_superwitness(self):
+    def calculate_alignment_and_segments(self):
         alignment = {}
         # note we traverse from right to left!
         self.last_x = self.length_witness_a
@@ -118,9 +118,9 @@ class EditGraphAligner(object):
             self.segments.insert(0, Segment([token2], True, False))
         return cell
 
-    # This function traverses the table diagonally and scores each cell.
+    # This function traverses the table diagonally and calls the supplied function for each cell.
     # Original function from Mark Byers; translated from C into Python.
-    def traverse_table_diagonally_and_score_cells(self):
+    def traverse_table_diagonally(self, function_to_call):
         m = self.length_witness_b+1
         n = self.length_witness_a+1
         for _slice in range(0, m + n - 1, 1):
@@ -130,7 +130,7 @@ class EditGraphAligner(object):
             while j >= z1:
                 x = _slice - j
                 y = j
-                self.score_cell(y, x)
+                function_to_call(y, x)
                 j -= 1
 
     def score_cell(self, y, x):
