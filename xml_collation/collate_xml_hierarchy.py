@@ -101,8 +101,8 @@ def convert_segments_into_result_dom(segments):
     return root
 
 # convert XML files into tokens
-tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsa-small.xml")
-tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/liefde-tsb-small.xml")
+tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsa-small-text-test.xml")
+tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsb-small-text-test.xml")
 
 print(tokens1)
 print(tokens2)
@@ -112,8 +112,10 @@ aligner = EditGraphAligner()
 alignment = aligner.align(tokens1, tokens2)
 segments = aligner.segments
 
-# convert segments in dom tree
-root = convert_segments_into_result_dom(segments)
+print(segments[0])
 
-print(root.toprettyxml())
+# convert segments in dom tree
+# root = convert_segments_into_result_dom(segments)
+
+# print(root.toprettyxml())
 

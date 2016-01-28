@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<text xml:lang="nl" xml:id="liefde-tsa" xmlns="">
+    <front>
+        <!-- No title page of typescript -->
+    </front>
+    <body>
+        <!-- The text of the typescript is divided into unnumbered <div>s specified by @type -->
+        <div type="typescript">
+            <!-- include reference to typescript id? my reference id is B917-2bis-B5-tsa-liefde -->
+            <div type="page" rend="recto" n="01r">
+                <head type="main">SHEHERAZADE</head>
+                <lb/>
+                <head type="sub">
+                    <del type="crossedOut" rend="grey pencil" hand="#RB" resp="#EB">of
+                        <lb/>"Literatuur als Lospri<del type="instant correction" rend="black ink"
+                            hand="#typist" resp="#EB"><choice>
+                                <unclear>a</unclear>
+                                <unclear>d</unclear>
+                            </choice></del><add place="overwritten" hand="#RB" rend="black ink"
+                            resp="#EB">j</add>s"</del>
+                </head>
+                <!-- rend="underline"? -->
+                <p style="text-indent: 50px;">Wat is Liefde zonder verleiding ?</p>
+                <p style="text-indent: 50px;">
+                    <s n="B917_2bis_B5_tsA_Liefde,[001]">Een geenszins benijdenswaardig lot, dat
+                        helaas <lb/>Shiriar, sultan van Arabië beschoren is...</s>
+                </p>
+                <p style="text-indent: 50px;">
+                    <s n="B917_2bis_B5_tsA_Liefde,[002]">De te streng doorgedreven rationalisatie
+                        van zijn <lb/>prinsenjeugd had dit <del type="crossedOut" rend="grey pencil"
+                            hand="#RB" resp="#EB">met zich</del> meegebracht.</s>
+                    <s n="B917_2bis_B5_tsA_Liefde,[003]"> Zooals alle <lb/>Staten die " aan het
+                        moderniseeren slaan " had Arabië weten<lb rend="hyphen"/>schappelijke
+                        methoden toeg <add place="supralinear" rend="deepblack ink" resp="#EB"
+                            hand="#RB">e</add>past op een gebied waar deze <lb/>weinig van pas
+                            komen<del type="overwritten" hand="#RB" resp="#EB" rend="grey pencil"
+                            >,</del><add place="overwritten" rend="grey pencil" hand="#RB"
+                            resp="#EB">:</add><del type="crossedOut" rend="grey pencil" hand="#RB"
+                            resp="#EB"> zoo, o.m. in de sexueele opvoeding <lb/>van den troo<del
+                                type="crossedOut" rend="grey pencil" hand="#RB" resp="#EB"
+                                >p</del><add place="supralinear" hand="#RB" rend="grey pencil"
+                                resp="#EB">n</add>o<add place="supralinear" rend="grey pencil"
+                                hand="#RB" resp="#EB">p</add>volger... </del></s>
+                    <s n="B917_2bis_B5_tsA_Liefde,[004]">Shiriar, vijftien jaar oud geworden,
+                        <lb/>had vreemd opgekeken, toen Fatima, eene leerares die <lb/>niets meer
+                        bezat van de bekoring die de jeugd verleent, met <lb/>den leergang van
+                        geslachtelijke voortplanting op een pedante <lb/>en plechtige wij<del
+                            type="instant correction" rend="black ink" hand="#typist" resp="#EB"
+                                ><unclear>x</unclear></del><add place="overwritten" rend="black ink"
+                            hand="#typist" resp="#EB">z</add>e begonnen was.</s>
+                </p>
+            </div>
+            
+            <div type="page" rend="recto" n="02r">
+                <p>
+                    <s n="B917_2bis_B5_tsA_Liefde,[005]">Aan de hand van wandplaten <lb/>die de
+                        verschillende ontwikkelingsstadia van het kuikentje, <add place="marginleft"
+                            hand="#RB" rend="blue pencil underline" resp="#EB">het</add><!-- use <restore>? Brulez wrote 'het', changed this to 'den' 
+         and then decided upon 'het' again -->
+                        <lb/>de kikvorschlarve en <hi rend="blue pencil underline"><del
+                                type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                                >h</del><add place="overwritten" resp="#EB" hand="#RB"
+                                rend="deepblack ink">d</add>e<del type="overwritten"
+                                rend="deepblack ink" hand="#RB" resp="#EB">t</del><add
+                                place="overwritten" resp="#EB" hand="#RB" rend="deepblack ink"
+                                >n</add></hi> menschelijke<add place="inline" rend="deepblack ink"
+                            hand="#RB" resp="#EB">n</add> foetus verbeelden, <lb/>werd prins Shiriar
+                        in de intiemste geheimen der Natuur <lb/>ingewijd.</s>
+                </p>
+            </div>
+        </div>
+    </body>
+</text>

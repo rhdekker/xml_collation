@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<text xml:lang="nl" xmlns="">
+    <!--  xml:id="liefde-tsb" verwijderd om code te laten lopen -->
+    <front>
+        <!-- Encode two title pages of typescript? -->
+    </front>
+    <body>
+        <div type="page" rend="recto" n="01r">
+            <delSpan spanTo="#tsB_01r" type="crossedOut" rend="grey pencil" hand="#RB" resp="#EB"/>
+            <head type="main">SHEHERAZADE</head>
+            <lb/>
+            <head type="sub">of <lb/>" Literatuur als Losprijs "</head>
+            <anchor xml:id="tsB_01r"/>
+            <!-- hoe lijn coderen? -->
+            <p style="text-indent: 50px;"> Wat is Liefde zonder verleiding ? </p>
+            <p style="text-indent: 50px;"> Een<add place="inline" rend="deepblack ink" hand="#RB"
+                    resp="#EB"><metamark function="disconnect"/></add>geenszin<del
+                    type="instantcorrection" hand="typist" rend="black ink" resp="#EB">n</del><add
+                    place="overwritten" rend="black ink" hand="#typist" resp="#EB">s</add>
+                benijdenswaardig lot, dat, helaas, Shiriar, sultan <lb/>van Arabië beschoren is.<add
+                    place="inline" hand="#RB" rend="deepblack ink" resp="#EB">..</add>
+            </p>
+            <p style="text-indent: 50px;">De te streng doorgedreven rationalisatie van zijn
+                prinsenjeugd <lb/>had dit <del type="crossedOut" hand="#RB" rend="deepblack ink"
+                    resp="#EB">met zich</del> meegebracht. Zooals alle Staten die " aan het mo<lb
+                    rend="hyphen"/>derniseeren slaan" had Arabië wetenschappelijke methoden
+                toegepast <lb/>op een gebied waar deze we<del type="instantcorrection"
+                    hand="#typist" rend="black ink" resp="#EB"/><add place="overwritten"
+                    hand="#typist" rend="black ink" resp="#EB">i</add>nig van pas k<del
+                    type="crossedOut" hand="#RB" rend="deepblack ink" resp="#EB">w</del><del
+                    type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">a</del><add
+                    place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">o</add>men, zoo
+                o.m. in de se<lb rend="hyphen"/>xueele opvoeding van den troo<del
+                    type="instantcorrection" hand="#typist" rend="black ink" resp="#EB">p</del><add
+                    place="overwritten" hand="#typist" rend="black ink" resp="#EB">n</add>opvolger.
+                Shiriar, vijftien jaar oud <lb/>geworden, had vreemd opgekeken, toen Fatima, eene
+                leerares die niets <lb/>meer bezat van de bekoring die de <del
+                    type="instantcorrection" rend="black ink" hand="#typist" resp="#EB">w</del><add
+                    place="overwritten" hand="#typist" rend="black ink" resp="#EB">j</add>eugd
+                verleent, met den leergang <lb/>van geslachtelijke voortplanting op een pedante en
+                plechtige wij<del type="instantcorrection" hand="#typist" rend="black ink"
+                    resp="#EB">f</del><add place="overwritten" hand="#typist" rend="black ink"
+                    resp="#EB">z</add>e <lb/>begonnen was.</p>
+        </div>
+
+        <div type="page" rend="recto" n="02r">
+            <p>Aa<del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">a</del>n de hand
+                    <del type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">den</del>
+                <add place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">van</add>
+                wandplaten die de verschillende <lb/>ontwikkelingsstadia van het kuikentje, de
+                kikvorschlarve en het <lb/>menschelijke foutus verbeelden, <del
+                    type="instantcorrection" hand="#typist" rend="black ink" resp="#EB">j</del><add
+                    place="overwritten" rend="black ink" hand="#typist" resp="#EB">w</add>erd prins
+                Shiriar in de intiemste <lb/>geheimen der Natuur ingewijd.<del
+                    type="instantcorrection" hand="#typist" rend="black ink" resp="#EB">D</del></p>
+        </div>
+    </body>
+</text>

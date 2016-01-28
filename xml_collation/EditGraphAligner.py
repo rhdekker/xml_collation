@@ -24,10 +24,10 @@ class Segment(object):
         self.addition = addition
 
     def __str__(self):
-        return " ".join(self.tokens)
+        return repr(self)
 
     def __repr__(self):
-        return " ".join(self.tokens)
+        return " ".join(str(token) for token in self.tokens)
 
 
 class EditGraphAligner(object):
