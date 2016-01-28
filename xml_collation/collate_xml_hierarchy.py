@@ -1,3 +1,4 @@
+import re
 from xml.dom.minidom import getDOMImplementation
 from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse, END_ELEMENT
 
@@ -24,6 +25,10 @@ class TextToken(Token):
     pass
 
 
+def tokenize_text(data):
+    return (TextToken(content) for content in re.findall(r'\w+|[^\w\s]+', data))
+
+
 def convert_xml_file_into_tokens(xml):
     # init input
     doc = parse(xml)
@@ -35,9 +40,7 @@ def convert_xml_file_into_tokens(xml):
         # debug
         # print(event, node)
         if event == CHARACTERS:
-            # skip insignificant whitespace
-            if node.data.strip():
-                tokens.append(TextToken(node.data))
+            tokens.extend(tokenize_text(node.data))
 
         elif event == START_ELEMENT:
             tokens.append(Token(node.localName))
@@ -112,7 +115,7 @@ aligner = EditGraphAligner()
 alignment = aligner.align(tokens1, tokens2)
 segments = aligner.segments
 
-print(segments[0])
+print_segments(segments)
 
 # convert segments in dom tree
 # root = convert_segments_into_result_dom(segments)
