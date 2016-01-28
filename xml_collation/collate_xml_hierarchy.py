@@ -98,7 +98,10 @@ def convert_segments_into_result_dom(segments):
                         # print("adding "+token.content+" to "+str(latest))
                         node = newdoc.createElement(token.content)
                         # set attribute to mark change!
-                        node.setAttribute("CX", "change")
+                        if segment.addition:
+                            node.setAttribute("CX", "addition")
+                        else:
+                            node.setAttribute("CX", "omission")
                         latest.appendChild(node)
                         latest = node
     return root
@@ -118,7 +121,7 @@ segments = aligner.segments
 print_segments(segments)
 
 # convert segments in dom tree
-# root = convert_segments_into_result_dom(segments)
+root = convert_segments_into_result_dom(segments)
 
-# print(root.toprettyxml())
+print(root.toprettyxml())
 
