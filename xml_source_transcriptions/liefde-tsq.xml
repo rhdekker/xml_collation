@@ -3,7 +3,7 @@
   <teiHeader xml:lang="en" xmlns="">
     <fileDesc>
       <titleStmt>
-        <title xml:id="liefde">Typoscript 1 "Wat is liefde zonder verleiding"</title>
+        <title xml:id="liefde-tsq">Typoscript quarto "Wat is liefde zonder verleiding"</title>
         <author xml:id="RB">
           <name>Raymond Brulez</name>
         </author>
@@ -70,7 +70,7 @@
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <bibl><!-- Bibliographic citiation of the typescript-->Typescript 1 of the framestory "Wat
+        <bibl><!-- Bibliographic citiation of the typescript-->Quarto typescript of the framestory "Wat
           is liefde zonder verleiding", part of the collection of stories "Wat is liefde zonder
           verleiding" door Raymond Brulez (preliminary reference: B917_2bis_B5_tsA_Liefde)</bibl>
       </sourceDesc>
@@ -130,10 +130,11 @@
       <change notAfter="2015-03-15" who="#EB">Start encoding</change>
       <change notAfter="2015-05-29" who="#EB">Finish first round of encoding</change>
       <change notAfter="2015-06-01" who="#EB">First check and updates of encoding</change>
+      <change notAfter="2016-02-01" who="#EB">Updated the title for a more accurate reference to the chronology in which both typescripts are produced.</change>
     </revisionDesc>
   </teiHeader>
 
-  <text xml:lang="nl" xml:id="liefde-tsa" xmlns="">
+  <text xml:lang="nl" xml:id="liefde-tsq" xmlns="">
     <front>
       <!-- No title page of typescript -->
     </front>

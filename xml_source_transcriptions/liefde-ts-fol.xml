@@ -3,7 +3,7 @@
     <teiHeader xml:lang="en" xmlns="">
         <fileDesc>
             <titleStmt>
-                <title xml:id="liefde-tsb">Typoscript B "Wat is liefde zonder verleiding"</title>
+                <title xml:id="liefde-ts-fol">Typoscript folio "Wat is liefde zonder verleiding"</title>
                 <author xml:id="RB">
                     <name>Raymond Brulez</name>
                 </author>
@@ -108,7 +108,7 @@
         </profileDesc>
         <revisionDesc/>
     </teiHeader>
-    <text xml:lang="nl" xml:id="liefde-tsb" xmlns="">
+    <text xml:lang="nl" xml:id="liefde-ts-fol" xmlns="">
         <front>
             <!-- Encode two title pages of typescript? -->
         </front>
