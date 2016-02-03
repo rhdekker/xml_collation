@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI>
+    <body>
+        <text>
+            <div type="page">
+                <p style="text-indent: 50px;">
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[018]">Inderdaad, wat is Liefde die niet
+                        voorafgegaan is door <lb/>verleiding ?</s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[019]">Helaas, Hij, Shiriar, Afstammeling der
+                        Profeten, <lb/>krijgt den wellust voorgeschoteld als een dagelijksche kost
+                        waarvoor <lb/>hij <add place="supralinear" rend="deepblack ink" hand="#RB"
+                            resp="#EB">dan nog</add> geen arbeid verricht heeft.</s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[020]">Hoe zoet moet nochtans zijn dit
+                            <lb/><del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >werven om</del>
+                        <add place="marginleft" rend="deepblack ink" hand="#RB" resp="#EB">trachten
+                            naar</add> een vrouw , de ongewisheid vóór de liefelijke
+                        toestemming!</s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[021]"><lb/>Shiriar denk aan de
+                        proletenvrijagies in de nauwe duistere steegjes <lb/>van Bagdad, <del
+                            type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">of</del>
+                        <add place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB">en</add>
+                        op de hellingen der wallen.</s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[022]">En dan die herinnering <lb/><del
+                            type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >a</del><add place="overwritten" rend="deepblack ink" hand="#RB"
+                            resp="#EB">v</add>an v<del type="instantcorrection" hand="#typist"
+                            rend="black ink" resp="#EB">r</del><add place="overwritten"
+                            hand="#typist" rend="black ink" resp="#EB">e</add>rleden zomer, toen
+                        hij, in gezelschap van den vizier van <lb/>Landbouw , een inspectietoch in
+                        de streek van den Euphraat deed.</s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[023]"><lb/><del type="overwritten"
+                            rend="deepblack ink" hand="#RB" resp="#EB">D</del><add
+                            place="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >E</add>e<add type="inline" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >n</add> ambtenaar<add place="supralinear" rend="deepblack ink"
+                            hand="#RB" resp="#EB">-agronoom</add> leerde hem juist <del
+                            type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">het
+                            verschil</del>
+                        <seg type="transposition" target="ts-fol_01r_trans1">onder<add
+                                place="inline" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >s</add>cheiden</seg>
+                        <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB">van</del>
+                        <lb/>rogge, tarwe en haver <anchor xml:id="ts-fol_01r_trans1"
+                        /><!-- codering checken! -->, toen ze, <del type="crossedOut"
+                            rend="deepblack ink" hand="#RB" resp="#EB">als een</del> in het koren
+                        verdoken <del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >koppel <lb/>patrijzen</del><add place="marginleft" rend="deepblack ink"
+                            hand="#RB" resp="#EB">Als een opgeschrokken koppel patrijzen</add>, een
+                            jonge<del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >n</del> boer en boerin d<del type="instantcorrection" hand="#typist"
+                            rend="black ink" resp="#EB">e</del><add place="overwritten"
+                            hand="#typist" rend="black ink" resp="#EB">i</add>e zich liefkoosden,
+                            ontdekt<lb rend="hyphen"/>en.</s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[024]"><del type="crossedOut"
+                            rend="deepblack ink" hand="#RB" resp="#EB">Verschrikt voor de statige
+                            heeren</del> waren ze op de vlucht gesla<del type="overwritten"
+                            rend="deepblack ink" hand="#RB" resp="#EB"
+                            ><unclear>xxx</unclear></del><add place="overwritten"
+                            rend="deepblack ink" hand="#RB" resp="#EB">gen</add>
+                        <add place="marginbelow" rend="deepblack ink" hand="#RB" resp="#EB">voor de
+                            statige heeren.</add></s>
+                    <s n="B917_2bis_B5_ts-fol_Liefde,[025]"><lb/>De sultan had nog net gemerkt hoe
+                            <add place="supralinear" rend="deepblack ink" hand="#RB" resp="#EB">, al
+                            loopende,</add> de blozende deerne de zware naakte <lb/>borsten weer in
+                        haar jak wegstopte.</s>
+                </p>
+            </div>
+        </text>
+    </body>
+</TEI>

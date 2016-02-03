@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI>
+    <body>
+        <text>
+            <div type="page">
+                <metamark function="deletion">&#8368;</metamark>
+                <!-- how to define target? -->
+                <note>In the left margin is a metamark resembling the 'deleatur' deletion symbol.
+                    The metamark indicates that the crossed out section needs to be deleted.</note>
+                <delSpan spanTo="#tsq_03r" type="cross" rend="grey pencil" hand="#RB" resp="#EB"/>
+                <!-- how to link the Metamark to section? by xml:id on <delSpan>? -->
+                <p style="text-indent: 50;">
+                    <s n="B917_2bis_B5_tsq_Liefde,[018]"><lb/>Inderdaad<add place="inline"
+                            rend="black ink" hand="#RB" resp="#EB"
+                        >,</add><!-- no whitespace due to the added comma-->wat is Liefde die niet
+                        voorafgegaan is <lb/>door verleiding ?</s>
+                    <s n="B917_2bis_B5_tsq_Liefde,[019]">Helaas hij, Shiriar, Afstammeling <lb/>der
+                            Profeten<add place="inline" rend="grey pencil" hand="#RB" resp="#EB"
+                            >,</add><!-- no whitespace due to the added comma-->krijgt den wellust
+                        voorgeschoteld als een dage<lb rend="hyphen"/>lijkschen kost, waarvoor hij
+                        dan nog geen arbeid verricht <lb/>heeft.</s>
+                    <s n="B917_2bis_B5_tsq_Liefde,[020]">Hoe zoet moet nochtans zijn dit <del
+                            rend="deepblack ink" type="crossedOut" hand="#RB" resp="#EB">werven
+                            om</del><add place="supralinear" rend="deepblack ink" hand="#RB"
+                            resp="#EB">trachten naar</add> een <lb/>vrouw ! Die dagen van nerveuze
+                        verwachting vóór de <lb/>liefelijke toestemming.</s>
+                </p>
+                <p style="text-indent: 50;">
+                    <s n="B917_2bis_B5_tsq_Liefde,[021]"><lb/>Shiriar denkt aan de proletenvrijagies
+                        in de <lb/>steegjes <seg type="transposition" xml:id="trans1_tsq_03r">van
+                                Bagda<del type="overwritten" rend="deepblack ink" hand="#RB"
+                                resp="#EB">g</del><add place="overwritten" rend="deepblack ink"
+                                hand="#RB" resp="#EB">d</add></seg>
+                        <seg type="transposition" xml:id="trans2_tsq_03r">en op de hellingen der
+                            wallen</seg>.</s>
+                    <s n="B917_2bis_B5_tsq_Liefde,[022]" rend="part1">En <lb/>dan die herinnering
+                        aan verleden zomer, toen hij in</s>
+                </p>
+                <anchor xml:id="tsq_03r"/>
+            </div>
+
+            <fw type="pageNum">- 3 -</fw>
+
+            <div type="page" rend="recto" n="04r">
+                <metamark function="deletion">&#8368;</metamark>
+                <note>In the left margin is a metamark resembling the 'deleatur' deletion symbol.
+                    The metamark indicates that the crossed out section needs to be deleted.</note>
+                <delSpan spanTo="#tsq_04r" type="cross" rend="grey pencil" hand="#RB" resp="#EB"/>
+                <p>
+                    <s n="B917_2bis_B5_tsq_Liefde,[022]" rend="part2"><lb/>gezelschap van den vizier
+                        van Landbouw een inspectietocht <lb/>deed in de streek van den
+                        Euphrates.</s>
+                    <s n="B917_2bis_B5_tsq_Liefde,[023]">Een
+                            ambtenaar-<!-- hyphenated word or linebreak? --><del
+                            type="instantCorrection" rend="black ink" hand="#typist" resp="#EB"
+                            >grx</del><lb/>agronoom leerde hem juist <del type="instantCorrection"
+                            rend="black ink" hand="#typist" resp="#EB">het verschil
+                            onderscheiden</del>
+                        <lb/>tarwe onderscheiden van rogge en haver als ze plots een <lb/>jonge boer
+                        en boerin <del type="instantCorrection" rend="black ink" hand="#typist"
+                            resp="#EB">in het</del> ontdekten die zich in het ko<lb rend="hyphen"
+                        />ren liefkoosden.</s>
+                    <s n="B917_2bis_B5_tsq_Liefde,[024]">Als een opgeschrokken koppel patrijzen
+                        <lb/>waren ze voor de statige heeren op de vlucht gesla<del
+                            type="overwritten" rend="deepblack ink" hand="#RB" resp="#EB"
+                                ><unclear>an.</unclear></del><add place="overwritten"
+                            rend="deepblack ink" hand="#RB" resp="#EB">gen.</add></s>
+                    <s n="B917_2bis_B5_tsq_Liefde,[025]"><lb/>De sultan had nog net gezien hoe, al
+                            loope<del type="crossedOut" rend="deepblack ink" hand="#RB" resp="#EB"
+                            >e</del>nd<add place="inline" rend="grey pencil" hand="#RB" resp="#EB"
+                            >e,</add><!-- no whitespace due to the added comma-->de blozende
+                        <lb/>deerne de zware naakte <del type="crossedOut" rend="deepblack ink"
+                            hand="#RB" resp="#EB">blanke</del> borsten weer in haar jak
+                        <lb/>wegstopte.</s>
+                </p>
+                <anchor xml:id="tsq_04r"/>
+            </div>
+        </text>
+    </body>
+</TEI>
