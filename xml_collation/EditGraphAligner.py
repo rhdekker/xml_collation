@@ -83,28 +83,17 @@ class EditGraphAligner(object):
                     if self.table[y][x - 1] == parent_node:
                         x -= 1
         # process additions/omissions in the beginning of the witnesses
-        self.add_to_segments(self.tokens_witness_a, self.tokens_witness_b, 0, 0)
+        cell = self.table[y][x]
+        self.add_to_segments(cell, self.tokens_witness_a, self.tokens_witness_b, 0, 0)
         return alignment
-
-    def add_to_segments(self, witness_a, witness_b, x, y):
-        # detect additions/omissions compared to the first witness
-        # print self.last_x - x - 1, self.last_y - y - 1
-        if self.last_y - y - 1 > 0:
-            added_witness = Segment(witness_b[y:self.last_y - 1], False, True)
-            # update segments with additions, omissions
-            self.segments.insert(0, added_witness)
-        if self.last_x - x - 1 > 0:
-            # print x, self.last_x, y, self.last_y
-            # create new segment
-            omitted_base = Segment(witness_a[x:self.last_x - 1], False, False)
-            # print omitted_base
-            self.segments.insert(0, omitted_base)
 
     def _process_cell(self, witness_a, witness_b, alignment, x, y):
         cell = self.table[y][x]
+        last_cell = self.table[self.last_y][self.last_x]
+        state_change = cell.match is not last_cell.match
         # process segments
-        if cell.match:
-            self.add_to_segments(witness_a, witness_b, x, y)
+        if state_change is True:
+            self.add_to_segments(cell, witness_a, witness_b, x, y)
             self.last_x = x
             self.last_y = y
         # process alignment
@@ -112,11 +101,22 @@ class EditGraphAligner(object):
             token = witness_a[x-1]
             token2 = witness_b[y-1]
             alignment[token2] = token
-#             print("match")
-#             print(token2)
-            # TODO: it is not so nice that every aligned token is it's own segment.
-            self.segments.insert(0, Segment([token2], True, False))
+
         return cell
+
+    def add_to_segments(self, cell, witness_a, witness_b, x, y):
+        if cell.match:
+            if self.last_y - y - 1 > 0:
+                added_witness = Segment(witness_b[y:self.last_y - 1], False, True)
+                self.segments.insert(0, added_witness)
+            if self.last_x - x - 1 > 0:
+                # print x, self.last_x, y, self.last_y
+                # create new segment
+                omitted_base = Segment(witness_a[x:self.last_x - 1], False, False)
+                # print omitted_base
+                self.segments.insert(0, omitted_base)
+        else:
+            self.segments.insert(0, Segment(witness_b[y:self.last_y - 1], True, False))
 
     # This function traverses the table diagonally and calls the supplied function for each cell.
     # Original function from Mark Byers; translated from C into Python.
