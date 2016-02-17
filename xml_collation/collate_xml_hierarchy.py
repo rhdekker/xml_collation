@@ -24,6 +24,9 @@ class Token(object):
 class TextToken(Token):
     pass
 
+class ElementToken(Token):
+    pass
+
 
 def tokenize_text(data):
     return (TextToken(content) for content in re.findall(r'\w+|[^\w\s]+', data))
@@ -43,10 +46,10 @@ def convert_xml_file_into_tokens(xml):
             tokens.extend(tokenize_text(node.data))
 
         elif event == START_ELEMENT:
-            tokens.append(Token(node.localName))
+            tokens.append(ElementToken(node.localName))
 
         elif event == END_ELEMENT:
-            tokens.append(Token("/"+node.localName))
+            tokens.append(ElementToken("/"+node.localName))
 
     return tokens
 
@@ -79,7 +82,7 @@ def convert_superwitness_into_result_dom(superwitness):
     latest = root
     # process the segments and fill document
     for extended_token in superwitness:
-        # for now we only handle aligned segments
+        # here we handle aligned segments
         if extended_token.aligned:
             # get the token inside the extended_token
             token = extended_token.token
@@ -93,10 +96,18 @@ def convert_superwitness_into_result_dom(superwitness):
                 node = newdoc.createElement(token.content)
                 latest.appendChild(node)
                 latest = node
+        # here we handle added segments
+        elif extended_token.addition:
+            # open wrapper
+            token = extended_token.token
+            if isinstance(token, TextToken):
+                t = newdoc.createElement("cx:addition")
+                latest.appendChild(t)
+                # content of text node as child to node cx:addition (leaf node)
+                t.appendChild(newdoc.createTextNode(token.content))
         else:
             token = extended_token.token
-            # skip text nodes in case of a change for now
-            if not isinstance(token, TextToken):
+            if isinstance(token, ElementToken):
                 if token.content.startswith("/"):
                     latest = latest.parentNode
                 else:
@@ -112,8 +123,8 @@ def convert_superwitness_into_result_dom(superwitness):
     return root
 
 # convert XML files into tokens
-tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsa-small-text-test.xml")
-tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsb-small-text-test.xml")
+tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/ts-fol-test-small.xml")
+tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsq-test-small.xml")
 
 print(tokens1)
 print(tokens2)
