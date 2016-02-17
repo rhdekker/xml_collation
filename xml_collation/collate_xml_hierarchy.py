@@ -51,59 +51,64 @@ def convert_xml_file_into_tokens(xml):
     return tokens
 
 
-def print_segments(segments):
+def print_superwitness(superwitness):
     # We want to show the result
     # we traverse over the tokens in the segments:
     result = []
-    for segment in segments:
+    for extended_token in superwitness:
         representation = ""
-        if not segment.aligned:
-            if segment.addition:
+        if not extended_token.aligned:
+            if extended_token.addition:
                 representation += "+"
             else:
                 representation += "-"
-        result.append(", ".join([representation+token.content for token in segment.tokens]))
+        result.append(", ".join([representation+extended_token.token.content]))
 
     print(result)
 
+#
+# def process_aligned_text_nodes:
 
-def convert_segments_into_result_dom(segments):
+
+
+def convert_superwitness_into_result_dom(superwitness):
     # create new document
     impl = getDOMImplementation()
     newdoc = impl.createDocument(None, "root", None)
     root = newdoc.documentElement
     latest = root
     # process the segments and fill document
-    for segment in segments:
+    for extended_token in superwitness:
         # for now we only handle aligned segments
-        if segment.aligned:
-            for token in segment.tokens:
-                if isinstance(token, TextToken):
-                    t = newdoc.createTextNode(token.content)
-                    latest.appendChild(t)
-                elif token.content.startswith("/"):
+        if extended_token.aligned:
+            # get the token inside the extended_token
+            token = extended_token.token
+            if isinstance(token, TextToken):
+                t = newdoc.createTextNode(token.content)
+                latest.appendChild(t)
+            elif token.content.startswith("/"):
+                latest = latest.parentNode
+            else:
+                # print("adding "+token.content+" to "+str(latest))
+                node = newdoc.createElement(token.content)
+                latest.appendChild(node)
+                latest = node
+        else:
+            token = extended_token.token
+            # skip text nodes in case of a change for now
+            if not isinstance(token, TextToken):
+                if token.content.startswith("/"):
                     latest = latest.parentNode
                 else:
                     # print("adding "+token.content+" to "+str(latest))
                     node = newdoc.createElement(token.content)
+                    # set attribute to mark change!
+                    if extended_token.addition:
+                        node.setAttribute("CX", "addition")
+                    else:
+                        node.setAttribute("CX", "omission")
                     latest.appendChild(node)
                     latest = node
-        else:
-            for token in segment.tokens:
-                # skip text nodes in case of a change for now
-                if not isinstance(token, TextToken):
-                    if token.content.startswith("/"):
-                        latest = latest.parentNode
-                    else:
-                        # print("adding "+token.content+" to "+str(latest))
-                        node = newdoc.createElement(token.content)
-                        # set attribute to mark change!
-                        if segment.addition:
-                            node.setAttribute("CX", "addition")
-                        else:
-                            node.setAttribute("CX", "omission")
-                        latest.appendChild(node)
-                        latest = node
     return root
 
 # convert XML files into tokens
@@ -116,12 +121,14 @@ print(tokens2)
 # align sequences of tokens. Results in segments.
 aligner = EditGraphAligner()
 alignment = aligner.align(tokens1, tokens2)
-segments = aligner.segments
+superwitness = aligner.superwitness
 
-print_segments(segments)
+print_superwitness(superwitness)
+
+# group aligned text tokens in one segment
 
 # convert segments in dom tree
-root = convert_segments_into_result_dom(segments)
+root = convert_superwitness_into_result_dom(superwitness)
 
 print(root.toprettyxml())
 

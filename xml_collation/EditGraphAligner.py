@@ -30,6 +30,19 @@ class Segment(object):
         return " ".join(str(token) for token in self.tokens)
 
 
+class ExtendedToken(object):
+    def __init__(self, token, aligned, addition):
+        self.token = token
+        self.aligned = aligned
+        self.addition = addition
+
+    def __str__(self):
+        return repr(self)
+
+    def __repr__(self):
+        return str(self.token, self.aligned, self.addition)
+
+
 class EditGraphAligner(object):
     def __init__(self):
         self.scorer = Scorer()
@@ -47,15 +60,15 @@ class EditGraphAligner(object):
         # per diagonal calculate the score (taking into account the three surrounding nodes)
         self.traverse_table_diagonally(self.score_cell)
 
-        alignment = self.calculate_alignment_and_segments()
+        alignment = self.calculate_alignment_and_superwitness()
         return alignment
 
-    def calculate_alignment_and_segments(self):
+    def calculate_alignment_and_superwitness(self):
         alignment = {}
         # note we traverse from right to left!
         self.last_x = self.length_witness_a
         self.last_y = self.length_witness_b
-        self.segments = []
+        self.superwitness = []
         # start lower right cell
         x = self.length_witness_a
         y = self.length_witness_b
@@ -84,7 +97,7 @@ class EditGraphAligner(object):
                         x -= 1
         # process additions/omissions in the beginning of the witnesses
         cell = self.table[y][x]
-        self.add_to_segments(cell, self.tokens_witness_a, self.tokens_witness_b, 0, 0)
+        self.add_to_superwitness(cell, self.tokens_witness_a, self.tokens_witness_b, 0, 0)
         return alignment
 
     def _process_cell(self, witness_a, witness_b, alignment, x, y):
@@ -93,7 +106,7 @@ class EditGraphAligner(object):
         state_change = cell.match is not last_cell.match
         # process segments
         if state_change is True:
-            self.add_to_segments(cell, witness_a, witness_b, x, y)
+            self.add_to_superwitness(cell, witness_a, witness_b, x, y)
             self.last_x = x
             self.last_y = y
         # process alignment
@@ -104,19 +117,27 @@ class EditGraphAligner(object):
 
         return cell
 
-    def add_to_segments(self, cell, witness_a, witness_b, x, y):
+    def add_to_superwitness(self, cell, witness_a, witness_b, x, y):
+        tokens_witness_b = witness_b[y:self.last_y - 1]
         if cell.match:
             if self.last_y - y - 1 > 0:
-                added_witness = Segment(witness_b[y:self.last_y - 1], False, True)
-                self.segments.insert(0, added_witness)
+                extended_token_segment = []
+                for token in tokens_witness_b:
+                    extended_token_segment.append(ExtendedToken(token, False, True))
+                self.superwitness = extended_token_segment + self.superwitness
             if self.last_x - x - 1 > 0:
                 # print x, self.last_x, y, self.last_y
-                # create new segment
-                omitted_base = Segment(witness_a[x:self.last_x - 1], False, False)
-                # print omitted_base
-                self.segments.insert(0, omitted_base)
+                tokens_witness_a = witness_a[x:self.last_x - 1]
+                extended_token_segment = []
+                for token in tokens_witness_a:
+                    extended_token_segment.append(ExtendedToken(token, False, False))
+                    # print omitted_base
+                self.superwitness = extended_token_segment + self.superwitness
         else:
-            self.segments.insert(0, Segment(witness_b[y:self.last_y - 1], True, False))
+                extended_token_segment = []
+                for token in tokens_witness_b:
+                    extended_token_segment.append(ExtendedToken(token, True, False))
+                self.superwitness = extended_token_segment + self.superwitness
 
     # This function traverses the table diagonally and calls the supplied function for each cell.
     # Original function from Mark Byers; translated from C into Python.
