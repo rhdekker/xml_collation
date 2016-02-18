@@ -69,9 +69,7 @@ def print_superwitness(superwitness):
 
     print(result)
 
-#
 # def process_aligned_text_nodes:
-
 
 
 def convert_superwitness_into_result_dom(superwitness):
@@ -82,45 +80,118 @@ def convert_superwitness_into_result_dom(superwitness):
     latest = root
     # process the segments and fill document
     for extended_token in superwitness:
-        # here we handle aligned segments
-        if extended_token.aligned:
-            # get the token inside the extended_token
-            token = extended_token.token
-            if isinstance(token, TextToken):
-                t = newdoc.createTextNode(token.content)
-                latest.appendChild(t)
-            elif token.content.startswith("/"):
-                latest = latest.parentNode
-            else:
-                # print("adding "+token.content+" to "+str(latest))
-                node = newdoc.createElement(token.content)
-                latest.appendChild(node)
-                latest = node
-        # here we handle added segments
-        elif extended_token.addition:
-            # open wrapper
-            token = extended_token.token
-            if isinstance(token, TextToken):
-                t = newdoc.createElement("cx:addition")
-                latest.appendChild(t)
-                # content of text node as child to node cx:addition (leaf node)
-                t.appendChild(newdoc.createTextNode(token.content))
+        # unwrap extended token
+        token = extended_token.token
+        # check the type of the token
+        if isinstance(token, ElementToken):
+            latest = handle_element_token(extended_token, latest, newdoc, token)
+        # else token is Text token (?)
+        # else clause for now because we handle only Element and Text tokens (later extend to e.g. XML-comments)
         else:
-            token = extended_token.token
-            if isinstance(token, ElementToken):
-                if token.content.startswith("/"):
-                    latest = latest.parentNode
-                else:
-                    # print("adding "+token.content+" to "+str(latest))
-                    node = newdoc.createElement(token.content)
-                    # set attribute to mark change!
-                    if extended_token.addition:
-                        node.setAttribute("CX", "addition")
-                    else:
-                        node.setAttribute("CX", "omission")
-                    latest.appendChild(node)
-                    latest = node
+            handle_text_token(extended_token, latest, newdoc, token)
     return root
+
+
+def handle_text_token(extended_token, latest, newdoc, token):
+    # unwrap extended token
+    if extended_token.aligned:
+        t = newdoc.createTextNode(token.content)
+        latest.appendChild(t)
+    elif extended_token.addition:
+        t = newdoc.createElement("CX: addition")
+        latest.appendChild(t)
+        # content of text node as child (leaf node) to node cx:addition
+        t.appendChild(newdoc.createTextNode(token.content))
+    # if token is not aligned or an addition it is an omission (we do not handle replacement now)
+    else:
+        t = newdoc.createElement("CX: omission")
+        latest.appendChild(t)
+        # content of text node as child (leaf node) to node cx:addition
+        t.appendChild(newdoc.createTextNode(token.content))
+
+
+def handle_element_token(extended_token, latest, newdoc, token):
+    # print(token.content + ":" + str(latest))
+    if extended_token.aligned:
+        # end tag
+        if token.content.startswith("/"):
+            latest = latest.parentNode
+        # start tag
+        else:
+            node = newdoc.createElement(token.content)
+            latest.appendChild(node)
+            latest = node
+    elif extended_token.addition:
+        # end tag
+        if token.content.startswith("/"):
+            latest = latest.parentNode
+        # start tag
+        else:
+            node = newdoc.createElement(token.content)
+            node.setAttribute("CX", "addition")
+            latest.appendChild(node)
+            latest = node
+    # if token is not aligned or an addition it is an omission (we do not handle replacement now)
+    else:
+        # end tag
+        if token.content.startswith("/"):
+            latest = latest.parentNode
+        # start tag
+        else:
+            node = newdoc.createElement(token.content)
+            node.setAttribute("CX", "omission")
+            latest.appendChild(node)
+            latest = node
+    return latest
+
+
+# def convert_superwitness_into_result_dom(superwitness):
+#     # create new document
+#     impl = getDOMImplementation()
+#     newdoc = impl.createDocument(None, "root", None)
+#     root = newdoc.documentElement
+#     latest = root
+#     # process the segments and fill document
+#     for extended_token in superwitness:
+#         # here we handle aligned segments
+#         if extended_token.aligned:
+#             # get the token inside the extended_token
+#             token = extended_token.token
+#             if isinstance(token, TextToken):
+#                 t = newdoc.createTextNode(token.content)
+#                 latest.appendChild(t)
+#             elif token.content.startswith("/"):
+#                 latest = latest.parentNode
+#             else:
+#                 # print("adding "+token.content+" to "+str(latest))
+#                 node = newdoc.createElement(token.content)
+#                 latest.appendChild(node)
+#                 latest = node
+#         # here we handle added segments
+#         elif extended_token.addition:
+#             # open wrapper
+#             token = extended_token.token
+#             if isinstance(token, TextToken):
+#                 t = newdoc.createElement("cx:addition")
+#                 latest.appendChild(t)
+#                 # content of text node as child to node cx:addition (leaf node)
+#                 t.appendChild(newdoc.createTextNode(token.content))
+#         else:
+#             token = extended_token.token
+#             if isinstance(token, ElementToken):
+#                 if token.content.startswith("/"):
+#                     latest = latest.parentNode
+#                 else:
+#                     # print("adding "+token.content+" to "+str(latest))
+#                     node = newdoc.createElement(token.content)
+#                     # set attribute to mark change!
+#                     if extended_token.addition:
+#                         node.setAttribute("CX", "addition")
+#                     else:
+#                         node.setAttribute("CX", "omission")
+#                     latest.appendChild(node)
+#                     latest = node
+#     return root
 
 # convert XML files into tokens
 tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/ts-fol-test-small.xml")
