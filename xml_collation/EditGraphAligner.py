@@ -118,7 +118,9 @@ class EditGraphAligner(object):
         return cell
 
     def add_to_superwitness(self, cell, witness_a, witness_b, x, y):
-        tokens_witness_b = witness_b[y:self.last_y - 1]
+        tokens_witness_b = witness_b[y:self.last_y]
+        # for debugging of the alignment purposes turn next line on
+        # print(tokens_witness_b)
         if cell.match:
             if self.last_y - y - 1 > 0:
                 extended_token_segment = []
@@ -127,7 +129,7 @@ class EditGraphAligner(object):
                 self.superwitness = extended_token_segment + self.superwitness
             if self.last_x - x - 1 > 0:
                 # print x, self.last_x, y, self.last_y
-                tokens_witness_a = witness_a[x:self.last_x - 1]
+                tokens_witness_a = witness_a[x:self.last_x]
                 extended_token_segment = []
                 for token in tokens_witness_a:
                     extended_token_segment.append(ExtendedToken(token, False, False))
