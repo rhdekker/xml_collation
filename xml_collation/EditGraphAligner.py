@@ -118,18 +118,18 @@ class EditGraphAligner(object):
         return cell
 
     def add_to_superwitness(self, cell, witness_a, witness_b, x, y):
+        tokens_witness_a = witness_a[x:self.last_x]
         tokens_witness_b = witness_b[y:self.last_y]
         # for debugging of the alignment purposes turn next line on
         # print(tokens_witness_b)
         if cell.match:
-            if self.last_y - y - 1 > 0:
+            if tokens_witness_b:
                 extended_token_segment = []
                 for token in tokens_witness_b:
                     extended_token_segment.append(ExtendedToken(token, False, True))
                 self.superwitness = extended_token_segment + self.superwitness
-            if self.last_x - x - 1 > 0:
+            if tokens_witness_a:
                 # print x, self.last_x, y, self.last_y
-                tokens_witness_a = witness_a[x:self.last_x]
                 extended_token_segment = []
                 for token in tokens_witness_a:
                     extended_token_segment.append(ExtendedToken(token, False, False))
@@ -181,15 +181,16 @@ class EditGraphAligner(object):
         token_b = self.tokens_witness_b[y-1]
         self.scorer.score_cell(self.table[y][x], parent_node, token_a, token_b, y, x, edit_operation)
 
-    # def _debug_edit_graph_table(self, table):
-    #     # print the table horizontal
-    #     x = PrettyTable()
-    #     x.header=False
-    #     for y in range(0, len(table)):
-    #         cells = table[y]
-    #         x.add_row(cells)
-    #     # alignment can only be set after the field names are known.
-    #     # since add_row sets the field names, it has to be set after x.add_row(cells)
-    #     x.align="l"
-    #     print(x)
-    #     return x
+
+     # def _debug_edit_graph_table(self, table):
+     #     # print the table horizontal
+     #     x = PrettyTable()
+     #     x.header=False
+     #     for y in range(0, len(table)):
+     #         cells = table[y]
+     #         x.add_row(cells)
+     #     # alignment can only be set after the field names are known.
+     #     # since add_row sets the field names, it has to be set after x.add_row(cells)
+     #     x.align="l"
+     #     print(x)
+     #     return x
