@@ -1,6 +1,6 @@
 import re
 from xml.dom.minidom import getDOMImplementation
-from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse, END_ELEMENT
+from xml.dom.pulldom import CHARACTERS, START_ELEMENT, parse, END_ELEMENT, parseString
 
 from xml_collation.EditGraphAligner import EditGraphAligner
 
@@ -32,14 +32,22 @@ def tokenize_text(data):
     return (TextToken(content) for content in re.findall(r'\w+|[^\w\s]+', data))
 
 
-def convert_xml_file_into_tokens(xml):
-    # init input
-    doc = parse(xml)
+def convert_xml_file_into_tokens(xml_filename):
+    doc = parse(xml_filename)
+    return convert_xml_doc_into_tokens(doc)
+
+
+def convert_xml_string_into_tokens(xml_string):
+    doc = parseString(xml_string)
+    return convert_xml_doc_into_tokens(doc)
+
+
+def convert_xml_doc_into_tokens(xml_doc):
     # init output
     # NOTE: tokens objects are made so to make them unique (localName can be repeated)
     # NOTE: we might want to make the tokens more complex to store the original location in xpath form
     tokens = []
-    for event, node in doc:
+    for event, node in xml_doc:
         # debug
         # print(event, node)
         if event == CHARACTERS:
@@ -49,8 +57,7 @@ def convert_xml_file_into_tokens(xml):
             tokens.append(ElementToken(node.localName))
 
         elif event == END_ELEMENT:
-            tokens.append(ElementToken("/"+node.localName))
-
+            tokens.append(ElementToken("/" + node.localName))
     return tokens
 
 
