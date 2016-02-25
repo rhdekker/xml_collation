@@ -40,7 +40,13 @@ class ExtendedToken(object):
         return repr(self)
 
     def __repr__(self):
-        return str(self.token, self.aligned, self.addition)
+        prefix = ""
+        if not self.aligned:
+            if self.addition:
+                prefix += "+"
+            else:
+                prefix += "-"
+        return ", ".join([prefix + self.token.content])
 
 
 class EditGraphAligner(object):

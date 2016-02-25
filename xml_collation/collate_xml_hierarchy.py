@@ -61,20 +61,24 @@ def convert_xml_doc_into_tokens(xml_doc):
     return tokens
 
 
+def align_tokens_and_return_superwitness(tokens1, tokens2):
+    # align sequences of tokens. Results in segments.
+    aligner = EditGraphAligner()
+    aligner.align(tokens1, tokens2)
+    superwitness = aligner.superwitness
+    return superwitness
+
+
 def print_superwitness(superwitness):
     # We want to show the result
     # we traverse over the tokens in the segments:
     result = []
     for extended_token in superwitness:
-        representation = ""
-        if not extended_token.aligned:
-            if extended_token.addition:
-                representation += "+"
-            else:
-                representation += "-"
-        result.append(", ".join([representation+extended_token.token.content]))
+        result.append(repr(extended_token))
 
     print(result)
+
+
 
 # def process_aligned_text_nodes:
 
@@ -159,10 +163,7 @@ tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsq-test-sm
 print(tokens1)
 print(tokens2)
 
-# align sequences of tokens. Results in segments.
-aligner = EditGraphAligner()
-alignment = aligner.align(tokens1, tokens2)
-superwitness = aligner.superwitness
+superwitness = align_tokens_and_return_superwitness(tokens1, tokens2)
 
 print_superwitness(superwitness)
 
