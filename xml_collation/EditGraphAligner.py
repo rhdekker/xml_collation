@@ -36,6 +36,16 @@ class ExtendedToken(object):
         self.aligned = aligned
         self.addition = addition
 
+    @property
+    def witnesses(self):
+        if self.aligned:
+            return ["A", "B"]
+        elif self.addition:
+            return ["B"]
+        else:
+            # TODO: add unit test for this specific case (omission)
+            return ["A"]
+
     def __str__(self):
         return repr(self)
 
