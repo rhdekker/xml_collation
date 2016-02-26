@@ -42,6 +42,20 @@ class TestTextGraph(unittest.TestCase):
         text_tokens = textgraph.text_tokens
         self.assertEquals("[x, y, z]", str(text_tokens))
 
+    def test_textgraph_annotations(self):
+        witness_a = "<tei><s>x y z</s></tei>"
+        witness_b = "<tei><s>x</s>y<s>z</s></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        annotations = textgraph.annotations
+        self.assertIn(Annotation("s", ["B"]), annotations)
+        self.assertIn(Annotation("s", ["A"]), annotations)
+        self.assertIn(Annotation("s", ["B"]), annotations) # double
+        self.assertIn(Annotation("tei", ["A", "B"]), annotations)
+        self.assertEqual(4, len(annotations))
+
     # def test_textgraph_annotations(self):
     #     witness_a = "<tei><s>x y z</s></tei>"
     #     witness_b = "<tei><s>x</s>y<s>z</s></tei>"
