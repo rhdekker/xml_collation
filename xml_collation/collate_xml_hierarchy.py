@@ -109,13 +109,13 @@ def handle_text_token(extended_token, latest, newdoc, token):
         t = newdoc.createTextNode(token.content)
         latest.appendChild(t)
     elif extended_token.addition:
-        t = newdoc.createElement("CX: addition")
+        t = newdoc.createElement("CX="+"added text")
         latest.appendChild(t)
         # content of text node as child (leaf node) to node cx:addition
         t.appendChild(newdoc.createTextNode(token.content))
     # if token is not aligned or an addition it is an omission (we do not handle replacement now)
     else:
-        t = newdoc.createElement("CX: omission")
+        t = newdoc.createElement("CX="+"omitted text")
         latest.appendChild(t)
         # content of text node as child (leaf node) to node cx:addition
         t.appendChild(newdoc.createTextNode(token.content))
@@ -155,22 +155,22 @@ def handle_element_token(extended_token, latest, newdoc, token):
             latest = node
     return latest
 
+if __name__ == '__main__':
+    # convert XML files into tokens
+    tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/ts-fol-test-small.xml")
+    tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsq-test-small.xml")
 
-# convert XML files into tokens
-tokens1 = convert_xml_file_into_tokens("../xml_source_transcriptions/ts-fol-test-small.xml")
-tokens2 = convert_xml_file_into_tokens("../xml_source_transcriptions/tsq-test-small.xml")
+    print(tokens1)
+    print(tokens2)
 
-print(tokens1)
-print(tokens2)
+    superwitness = align_tokens_and_return_superwitness(tokens1, tokens2)
 
-superwitness = align_tokens_and_return_superwitness(tokens1, tokens2)
+    print_superwitness(superwitness)
 
-print_superwitness(superwitness)
+    # group aligned text tokens in one segment
 
-# group aligned text tokens in one segment
+    # convert segments in dom tree
+    root = convert_superwitness_into_result_dom(superwitness)
 
-# convert segments in dom tree
-root = convert_superwitness_into_result_dom(superwitness)
-
-print(root.toprettyxml())
+    print(root.toprettyxml())
 
