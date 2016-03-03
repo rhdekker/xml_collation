@@ -40,16 +40,16 @@ def convert_superwitness_to_textgraph(superwitness):
                     if tuple1 == tuple2:
                         print("1")
                         # combine in 1 annotation
-                        annotations.append(Annotation(tuple1[0], tuple1[1]))
+                        annotations.append(Annotation(tuple1[0], tuple1[1], 0, 0))
                     else:
                         print("2")
                         # create two separate annotations
-                        annotations.append(Annotation(tuple1[0], ["A"]))
-                        annotations.append(Annotation(tuple2[0], ["B"]))
+                        annotations.append(Annotation(tuple1[0], ["A"], 0, 0))
+                        annotations.append(Annotation(tuple2[0], ["B"], 0, 0))
                 else:
                     print("3")
                     tuple = open_tags_per_witness[extended_token.witnesses[0]].pop()
-                    annotations.append(Annotation(tuple[0], tuple[1]))
+                    annotations.append(Annotation(tuple[0], tuple[1], 0, 0))
             else:
                 # open tag... push tag to one or both stacks
                 tag = (token.content, extended_token.witnesses)
