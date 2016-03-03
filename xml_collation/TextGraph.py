@@ -2,8 +2,7 @@ from collections import namedtuple, defaultdict
 
 from xml_collation.collate_xml_hierarchy import TextToken
 
-# TODO: add range start and range end back in
-Annotation = namedtuple('Annotation', ['tagname', 'witnesses'])
+Annotation = namedtuple('Annotation', ['tagname', 'witnesses', 'range_start', 'range_end'])
 
 
 class Stack(list):
