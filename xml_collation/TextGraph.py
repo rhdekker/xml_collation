@@ -1,5 +1,4 @@
-from _license import defaultdict
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 
 from xml_collation.collate_xml_hierarchy import TextToken
 
