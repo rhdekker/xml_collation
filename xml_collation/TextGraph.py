@@ -24,39 +24,50 @@ def convert_superwitness_to_textgraph(superwitness):
 
     annotations = []
     open_tags_per_witness = defaultdict(Stack)
+    text_token_counter = -1
 
     for extended_token in superwitness:
         token = extended_token.token
         if isinstance(token, TextToken):
-            # TODO
-            pass
+            text_token_counter += 1
         else:
             if token.content.startswith("/"):
                 # end tag
                 print("closing: "+token.content)
                 if extended_token.aligned:
-                    tuple1 = open_tags_per_witness["A"].pop()
-                    tuple2 = open_tags_per_witness["B"].pop()
-                    if tuple1 == tuple2:
+                    administration_a = open_tags_per_witness["A"].pop()
+                    administration_b = open_tags_per_witness["B"].pop()
+                    if administration_a == administration_b:
                         print("1")
                         # combine in 1 annotation
-                        annotations.append(Annotation(tuple1[0], tuple1[1], 0, 0))
+                        # annotation is the same element and on the same position in both witnesses
+                        # stacks not necessarily same height
+                        annotations.append(Annotation(administration_a[0], administration_a[1], administration_a[2], text_token_counter))
+                        # print(annotations[-1])
                     else:
                         print("2")
                         # create two separate annotations
-                        annotations.append(Annotation(tuple1[0], ["A"], 0, 0))
-                        annotations.append(Annotation(tuple2[0], ["B"], 0, 0))
+                        # annotation could be the same tag but not the same element
+                        # add the item to the annotations list given the coordinates of the range
+                        annotations.append(Annotation(administration_a[0], ["A"], administration_a[2], text_token_counter))
+                        # print(annotations[-1])
+                        annotations.append(Annotation(administration_b[0], ["B"], administration_b[2], text_token_counter))
+                        # print(annotations[-1])
                 else:
                     print("3")
-                    tuple = open_tags_per_witness[extended_token.witnesses[0]].pop()
-                    annotations.append(Annotation(tuple[0], tuple[1], 0, 0))
+                    # annotations are not aligned:
+                    # --> one of the two witnesses is a closing tag
+                    # witnesses is list: aligned, addition, omission (A, A, B)
+                    administration = open_tags_per_witness[extended_token.witnesses[0]].pop()
+                    annotations.append(Annotation(administration[0], extended_token.witnesses, administration[2], text_token_counter))
+                    # print(annotations[-1])
             else:
                 # open tag... push tag to one or both stacks
-                tag = (token.content, extended_token.witnesses)
+                administration = (token.content, extended_token.witnesses, text_token_counter+1)
                 for sigil in extended_token.witnesses:
-                    open_tags_per_witness[sigil].push(tag)
+                    open_tags_per_witness[sigil].push(administration)
                 # log
-                print("opening "+str(tag))
+                print("opening "+str(administration))
                 print("top of stack witness A: "+str(open_tags_per_witness["A"].peek()))
                 print("top of stack witness B: "+str(open_tags_per_witness["B"].peek()))
 
