@@ -50,11 +50,12 @@ class TestTextGraph(unittest.TestCase):
         superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
         textgraph = convert_superwitness_to_textgraph(superwitness)
         annotations = textgraph.annotations
-        self.assertIn(Annotation("s", ["B"], 0, 0), annotations)
-        self.assertIn(Annotation("s", ["A"], 0, 2), annotations)
-        self.assertIn(Annotation("s", ["B"], 2, 2), annotations)
-        self.assertIn(Annotation("tei", ["A", "B"], 0, 2), annotations)
+        self.assertIn(Annotation("s", ["B"], 0, 0, 1), annotations)
+        self.assertIn(Annotation("s", ["A"], 0, 2, 1), annotations)
+        self.assertIn(Annotation("s", ["B"], 2, 2, 1), annotations)
+        self.assertIn(Annotation("tei", ["A", "B"], 0, 2, 0), annotations)
         self.assertEqual(4, len(annotations))
+
 
 
 

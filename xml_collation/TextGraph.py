@@ -1,8 +1,9 @@
 from collections import namedtuple, defaultdict
+# defaultdict is a subclass of dict
 
 from xml_collation.collate_xml_hierarchy import TextToken
 
-Annotation = namedtuple('Annotation', ['tagname', 'witnesses', 'range_start', 'range_end'])
+Annotation = namedtuple('Annotation', ['tagname', 'witnesses', 'range_start', 'range_end', 'level'])
 
 
 class Stack(list):
@@ -24,6 +25,7 @@ def convert_superwitness_to_textgraph(superwitness):
 
     annotations = []
     open_tags_per_witness = defaultdict(Stack)
+    # key-value pairs are grouped in a dictionary of stacks
     text_token_counter = -1
 
     for extended_token in superwitness:
@@ -42,28 +44,34 @@ def convert_superwitness_to_textgraph(superwitness):
                         # combine in 1 annotation
                         # annotation is the same element and on the same position in both witnesses
                         # stacks not necessarily same height
-                        annotations.append(Annotation(administration_a[0], administration_a[1], administration_a[2], text_token_counter))
-                        # print(annotations[-1])
+                        annotations.append(Annotation(administration_a[0], administration_a[1], administration_a[2], text_token_counter, administration_a[3]))
+                        print(annotations[-1])
                     else:
                         print("2")
                         # create two separate annotations
                         # annotation could be the same tag but not the same element
                         # add the item to the annotations list given the coordinates of the range
-                        annotations.append(Annotation(administration_a[0], ["A"], administration_a[2], text_token_counter))
-                        # print(annotations[-1])
-                        annotations.append(Annotation(administration_b[0], ["B"], administration_b[2], text_token_counter))
-                        # print(annotations[-1])
+                        annotations.append(Annotation(administration_a[0], ["A"], administration_a[2], text_token_counter, administration_a[3]))
+                        print(annotations[-1])
+                        annotations.append(Annotation(administration_b[0], ["B"], administration_b[2], text_token_counter, administration_b[3]))
+                        print(annotations[-1])
                 else:
                     print("3")
                     # annotations are not aligned:
-                    # --> one of the two witnesses is a closing tag
-                    # witnesses is list: aligned, addition, omission (A, A, B)
+                    # --> one of the two witnesses is not a closing tag
+                    # witnesses is list: aligned, addition, omission (A(+B), A, B)
                     administration = open_tags_per_witness[extended_token.witnesses[0]].pop()
-                    annotations.append(Annotation(administration[0], extended_token.witnesses, administration[2], text_token_counter))
-                    # print(annotations[-1])
+                    annotations.append(Annotation(administration[0], extended_token.witnesses, administration[2], text_token_counter, administration[3]))
+                    print(annotations[-1])
             else:
                 # open tag... push tag to one or both stacks
-                administration = (token.content, extended_token.witnesses, text_token_counter+1)
+                previous_open_tag = None
+                level = 0
+                for open_tag in open_tags_per_witness:
+                    if previous_open_tag is not None:
+                        level += 1
+                    previous_open_tag = open_tag
+                administration = (token.content, extended_token.witnesses, text_token_counter+1, level)
                 for sigil in extended_token.witnesses:
                     open_tags_per_witness[sigil].push(administration)
                 # log
