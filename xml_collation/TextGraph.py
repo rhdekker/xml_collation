@@ -67,7 +67,10 @@ def convert_superwitness_to_textgraph(superwitness):
                 # open tag... push tag to one or both stacks
                 previous_open_tag = None
                 level = 0
-                for open_tag in open_tags_per_witness:
+                # TO DO travers not the stack, but the tags *inside* each stack
+                # TO DO decide which stack to travers: not each element occurs in each stack
+                # TO DO push administration to stack
+                for open_tag in open_tags_per_witness["A"]:
                     if previous_open_tag is not None:
                         level += 1
                     previous_open_tag = open_tag

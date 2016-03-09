@@ -56,6 +56,38 @@ class TestTextGraph(unittest.TestCase):
         self.assertIn(Annotation("tei", ["A", "B"], 0, 2, 0), annotations)
         self.assertEqual(4, len(annotations))
 
+    def test_2_superwitness(self):
+        witness_a = "<tei><p><s>a b<s>c</s>d</s></p></tei>"
+        witness_b = "<tei><p><s>a b d</s></p></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        self.assertEquals("[tei, p, s, a, b, -s, -c, -/s, d, /s, /p, /tei]", str(superwitness))
+
+    def test_2_textgraph_text(self):
+        witness_a = "<tei><p><s>a b<s>c</s>d</s></p></tei>"
+        witness_b = "<tei><p><s>a b d</s></p></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        text_tokens = textgraph.text_tokens
+        self.assertEquals("[a, b, -c, d]", str(text_tokens))
+
+    def test_2_textgraph_annotations(self):
+        witness_a = "<tei><p><s>a b<s>c</s>d</s></p></tei>"
+        witness_b = "<tei><p><s>a b d</s></p></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        annotations = textgraph.annotations
+        self.assertIn(Annotation("s", ["A"], 2, 2, 3), annotations)
+        self.assertIn(Annotation("s", ["A", "B"], 0, 3, 2), annotations)
+        self.assertIn(Annotation("p", ["A", "B"], 0, 3, 1), annotations)
+        self.assertIn(Annotation("tei", ["A", "B"], 0, 3, 0), annotations)
+        self.assertEqual(4, len(annotations))
+
 
 
 
