@@ -88,6 +88,39 @@ class TestTextGraph(unittest.TestCase):
         self.assertIn(Annotation("tei", ["A", "B"], 0, 3, 0), annotations)
         self.assertEqual(4, len(annotations))
 
+    def test_3_superwitness(self):
+        witness_a = "<tei><p><s>a b<s>c</s>d</s></p></tei>"
+        witness_b = "<tei><div><p><s>a b d</s></p></div></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        self.assertEquals("[tei, +div, p, s, a, b, -s, -c, -/s, d, /s, /p, +/div, /tei]", str(superwitness))
+
+    def test_3_textgraph_text(self):
+        witness_a = "<tei><p><s>a b<s>c</s>d</s></p></tei>"
+        witness_b = "<tei><div><p><s>a b d</s></p></div></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        text_tokens = textgraph.text_tokens
+        self.assertEquals("[a, b, -c, d]", str(text_tokens))
+
+    def test_3_textgraph_annotations(self):
+        witness_a = "<tei><p><s>a b<s>c</s>d</s></p></tei>"
+        witness_b = "<tei><div><p><s>a b d</s></p></div></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        annotations = textgraph.annotations
+        self.assertIn(Annotation("s", ["A"], 2, 2, 4), annotations)
+        self.assertIn(Annotation("s", ["A", "B"], 0, 3, 3), annotations)
+        self.assertIn(Annotation("p", ["A", "B"], 0, 3, 2), annotations)
+        self.assertIn(Annotation("div", ["B"], 0, 3, 1), annotations)
+        self.assertIn(Annotation("tei", ["A", "B"], 0, 3, 0), annotations)
+        self.assertEqual(5, len(annotations))
+
 
 
 

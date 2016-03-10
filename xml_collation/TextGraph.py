@@ -20,6 +20,29 @@ class TextGraph(object):
         self.annotations = annotations
 
 
+def calculate_level(open_tags_per_witness, extended_token):
+    # find all relevant stacks
+    relevant_stacks = []
+    for sigil in extended_token.witnesses:
+        stack = open_tags_per_witness[sigil]
+        relevant_stacks.append(stack)
+    # get parent_levels of stacks (NB stacks can be empty)
+    parent_levels = []
+    for stack in relevant_stacks:
+        if stack:
+            administration = stack.peek()
+            level = administration[3]
+            parent_levels.append(level)
+        else:
+            # root element level is 0, parent_level non-existent and thus faked
+            parent_levels.append(-1)
+    # calculate highest level of stacks
+    highest_parent_level = max(parent_levels)
+    # calculate level of node in graph
+    actual_level = highest_parent_level +1
+    return actual_level
+
+
 def convert_superwitness_to_textgraph(superwitness):
     text_tokens = [extended_token for extended_token in superwitness if isinstance(extended_token.token, TextToken)]
 
@@ -64,15 +87,9 @@ def convert_superwitness_to_textgraph(superwitness):
                     annotations.append(Annotation(administration[0], extended_token.witnesses, administration[2], text_token_counter, administration[3]))
                     print(annotations[-1])
             else:
-                # open tag... push tag to one or both stacks
-                if extended_token.aligned:
-                    stack_per_witness = open_tags_per_witness["A"]
-                elif extended_token.addition:
-                    stack_per_witness = open_tags_per_witness["B"]
-                else:
-                    stack_per_witness = open_tags_per_witness["A"]
-                level = len(stack_per_witness)
+                level = calculate_level(open_tags_per_witness, extended_token)
                 administration = (token.content, extended_token.witnesses, text_token_counter+1, level)
+                # open tag... push tag to one or both stacks
                 for sigil in extended_token.witnesses:
                     open_tags_per_witness[sigil].push(administration)
                 # log
