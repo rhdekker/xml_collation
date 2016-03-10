@@ -65,13 +65,13 @@ def convert_superwitness_to_textgraph(superwitness):
                     print(annotations[-1])
             else:
                 # open tag... push tag to one or both stacks
-                # TO DO decide which stack to travers: not each element occurs in each stack, now we go only for wit A.
                 if extended_token.aligned:
-                    level = len(open_tags_per_witness["A"])
+                    stack_per_witness = open_tags_per_witness["A"]
                 elif extended_token.addition:
-                    level = len(open_tags_per_witness["B"])
+                    stack_per_witness = open_tags_per_witness["B"]
                 else:
-                    level = len(open_tags_per_witness["A"])
+                    stack_per_witness = open_tags_per_witness["A"]
+                level = len(stack_per_witness)
                 administration = (token.content, extended_token.witnesses, text_token_counter+1, level)
                 for sigil in extended_token.witnesses:
                     open_tags_per_witness[sigil].push(administration)
