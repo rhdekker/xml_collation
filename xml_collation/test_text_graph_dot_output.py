@@ -1,3 +1,4 @@
+from itertools import tee
 from unittest import TestCase
 
 from xml_collation.TextGraph import convert_superwitness_to_textgraph
@@ -8,16 +9,30 @@ def export_as_dot(textgraph):
     # opener
     output = "digraph TextGraph {\n"
 
+    # add nodes for text nodes
     # we go over the text nodes
     text_token_counter = 0
     for text_token in textgraph.text_tokens:
         text_token_counter += 1
         output += '    '+str(text_token_counter)+' label="'+text_token.token.content+'"\n'
 
+    # We have to map text nodes to a number
+    # TODO: some duplication with code above
+    text_tokens_as_numbers = [ counter+1 for counter, text_token in enumerate(textgraph.text_tokens) ]
+
+    # add edges for text nodes
+    for v, w in pairwise(text_tokens_as_numbers):
+        output += '    '+str(v)+' -> '+str(w)+'\n'
+
     # closer
     output += "}"
     return output
-    pass
+
+
+def pairwise(iterable):
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
 
 
 class DotTest(TestCase):
@@ -34,8 +49,8 @@ class DotTest(TestCase):
     1 label="x"
     2 label="y"
     3 label="z"
+    1 -> 2
+    2 -> 3
 }"""
         self.assertEqual(expected_out, dot_export)
 
-    # 1 -> 2
-    # 2 -> 3
