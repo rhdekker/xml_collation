@@ -19,6 +19,12 @@ class TextGraph(object):
         self.text_tokens = text_tokens
         self.annotations = annotations
 
+    @property
+    def annotations_sorted(self):
+        return sorted(self.annotations, key = lambda x: (x.range_start, -x.range_end, x.level))
+        #return self.annotations
+
+
 
 def calculate_level(open_tags_per_witness, extended_token):
     # find all relevant stacks
@@ -41,7 +47,6 @@ def calculate_level(open_tags_per_witness, extended_token):
     # calculate level of node in graph
     actual_level = highest_parent_level +1
     return actual_level
-
 
 def convert_superwitness_to_textgraph(superwitness):
     text_tokens = [extended_token for extended_token in superwitness if isinstance(extended_token.token, TextToken)]

@@ -121,6 +121,22 @@ class TestTextGraph(unittest.TestCase):
         self.assertIn(Annotation("tei", ["A", "B"], 0, 3, 0), annotations)
         self.assertEqual(5, len(annotations))
 
+    def test_sort_annotations_based_on_positions_and_level(self):
+        witness_a = "<tei><s>x y z</s></tei>"
+        witness_b = "<tei><s>x</s>y<s>z</s></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        # sort on range start, then on range end, then on level
+        a1 = Annotation("tei", ["A", "B"], 0, 2, 0)
+        a2 = Annotation("s", ["A"], 0, 2, 1)
+        a3 = Annotation("s", ["B"], 0, 0, 1)
+        a4 = Annotation("s", ["B"], 2, 2, 1)
+        expected_annotations = [a1, a2, a3, a4]
+        annotations = textgraph.annotations_sorted
+        self.assertEqual(expected_annotations, annotations)
+
 
 
 
