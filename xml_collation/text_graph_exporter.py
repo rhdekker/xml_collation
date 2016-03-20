@@ -11,7 +11,7 @@ def export_as_dot(textgraph, annotations=False):
     text_token_counter = 0
     for text_token in textgraph.text_tokens:
         text_token_counter += 1
-        output += '    '+str(text_token_counter)+' label="'+text_token.token.content+'"\n'
+        output += '    '+str(text_token_counter)+' [label="'+text_token.token.content+'"]\n'
 
     # We have to map text nodes to a number
     # TODO: some duplication with code above
@@ -27,7 +27,7 @@ def export_as_dot(textgraph, annotations=False):
         annotation_counter = 0
         for annotation in textgraph.annotations_sorted:
             annotation_counter += 1
-            output += '    a'+str(annotation_counter)+' label="'+annotation.tagname+'"\n'
+            output += '    a'+str(annotation_counter)+' [label="'+annotation.tagname+'"]\n'
 
         # add edges for annotation nodes
         # so we go over the text nodes from left to right
@@ -56,12 +56,12 @@ def export_as_dot(textgraph, annotations=False):
                 open_annotation_counter += 1
                 # check highest_level
                 if open_annotation[0].level == highest_level:
-                    output += "    a"+str(open_annotation[1])+ " - "+str(text_token_as_number)+"\n"
+                    output += "    a"+str(open_annotation[1])+ " -> "+str(text_token_as_number)+"\n"
                 else:
                     for other_annotation in open_annotations[open_annotation_counter:]:
                         # print(open_annotation, other_annotation)
                         if other_annotation[0].level - open_annotation[0].level == 1:
-                            output += "    a"+str(open_annotation[1]) + " - a"+str(other_annotation[1])+"\n"
+                            output += "    a"+str(open_annotation[1]) + " -> a"+str(other_annotation[1])+"\n"
 
             # handle the annotations that should be closed
             while open_annotations and open_annotations[-1][0].range_end == text_token_as_number - 1:

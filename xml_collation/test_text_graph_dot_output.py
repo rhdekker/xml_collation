@@ -16,9 +16,9 @@ class DotTest(TestCase):
         textgraph = convert_superwitness_to_textgraph(superwitness)
         dot_export = export_as_dot(textgraph)
         expected_out = """digraph TextGraph {
-    1 label="x"
-    2 label="y"
-    3 label="z"
+    1 [label="x"]
+    2 [label="y"]
+    3 [label="z"]
     1 -> 2
     2 -> 3
 }"""
@@ -42,25 +42,25 @@ class DotTest(TestCase):
         textgraph = convert_superwitness_to_textgraph(superwitness)
         dot_export = export_as_dot(textgraph, annotations=True)
         expected_out = """digraph TextGraph {
-    1 label="x"
-    2 label="y"
-    3 label="z"
+    1 [label="x"]
+    2 [label="y"]
+    3 [label="z"]
     1 -> 2
     2 -> 3
-    a1 label="tei"
-    a2 label="s1"
-    a3 label="s2"
-    a4 label="s3"
-    a1 - a2
-    a1 - a3
-    a2 - 1
-    a3 - 1
-    a1 - a2
-    a2 - 2
-    a1 - a2
-    a1 - a4
-    a2 - 3
-    a4 - 3
+    a1 [label="tei"]
+    a2 [label="s1"]
+    a3 [label="s2"]
+    a4 [label="s3"]
+    a1 -> a2
+    a1 -> a3
+    a2 -> 1
+    a3 -> 1
+    a1 -> a2
+    a2 -> 2
+    a1 -> a2
+    a1 -> a4
+    a2 -> 3
+    a4 -> 3
 }"""
         # TODO: There are some duplication annotation edges here that should be removed! (a1 - a2)
         # vertices only for the moment
