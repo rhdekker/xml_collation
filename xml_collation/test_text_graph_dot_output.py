@@ -15,7 +15,7 @@ class DotTest(TestCase):
         superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
         textgraph = convert_superwitness_to_textgraph(superwitness)
         dot_export = export_as_dot(textgraph)
-        expected_out = """digraph TextGraph {
+        expected_out = """strict digraph TextGraph {
     1 [label="x"]
     2 [label="y"]
     3 [label="z"]
@@ -32,8 +32,6 @@ class DotTest(TestCase):
 # note that annotation vertices
 # need to have unique id (in comparison to the text vertices)
 
-# we need to add the edges here to the expectations
-
     def test_dot_markup_only(self):
         witness_a = "<tei><s1>x y z</s1></tei>"
         witness_b = "<tei><s2>x</s2>y<s3>z</s3></tei>"
@@ -42,7 +40,7 @@ class DotTest(TestCase):
         superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
         textgraph = convert_superwitness_to_textgraph(superwitness)
         dot_export = export_as_dot(textgraph, annotations=True)
-        expected_out = """digraph TextGraph {
+        expected_out = """strict digraph TextGraph {
     1 [label="x"]
     2 [label="y"]
     3 [label="z"]
@@ -65,6 +63,6 @@ class DotTest(TestCase):
     3 -> a4
 }"""
         # TODO: There are some duplication annotation edges here that should be removed! (a1 - a2)
-        # vertices only for the moment
+        # NOTE: For now we work around the problem by adding the "strict" keyword to the DOT export.
         self.assertEqual(expected_out, dot_export)
 

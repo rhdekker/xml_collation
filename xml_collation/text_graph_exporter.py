@@ -4,7 +4,7 @@ from itertools import tee
 
 def export_as_dot(textgraph, annotations=False):
     # opener
-    output = "digraph TextGraph {\n"
+    output = "strict digraph TextGraph {\n"
 
     # add nodes for text nodes
     # we go over the text nodes
