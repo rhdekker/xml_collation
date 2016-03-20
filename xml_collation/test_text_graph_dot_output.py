@@ -1,45 +1,8 @@
-from itertools import tee
 from unittest import TestCase
 
 from xml_collation.TextGraph import convert_superwitness_to_textgraph
 from xml_collation.collate_xml_hierarchy import convert_xml_string_into_tokens, align_tokens_and_return_superwitness
-
-
-def export_as_dot(textgraph, annotations=False):
-    # opener
-    output = "digraph TextGraph {\n"
-
-    # add nodes for text nodes
-    # we go over the text nodes
-    text_token_counter = 0
-    for text_token in textgraph.text_tokens:
-        text_token_counter += 1
-        output += '    '+str(text_token_counter)+' label="'+text_token.token.content+'"\n'
-
-    # We have to map text nodes to a number
-    # TODO: some duplication with code above
-    text_tokens_as_numbers = [ counter+1 for counter, text_token in enumerate(textgraph.text_tokens) ]
-
-    # add edges for text nodes
-    for v, w in pairwise(text_tokens_as_numbers):
-        output += '    '+str(v)+' -> '+str(w)+'\n'
-
-    if annotations:
-        # I need to sort the annotations that are on the text graph
-        annotation_counter = 0
-        for annotation in textgraph.annotations_sorted:
-            annotation_counter += 1
-            output += '    a'+str(annotation_counter)+' label="'+annotation.tagname+'"\n'
-
-    # closer
-    output += "}"
-    return output
-
-
-def pairwise(iterable):
-    a, b = tee(iterable)
-    next(b, None)
-    return zip(a, b)
+from xml_collation.text_graph_exporter import export_as_dot
 
 
 class DotTest(TestCase):
@@ -68,9 +31,11 @@ class DotTest(TestCase):
 # note that annotation vertices
 # need to have unique id (in comparison to the text vertices)
 
+# we need to add the edges here to the expectations
+
     def test_dot_markup_only(self):
-        witness_a = "<tei><s>x y z</s></tei>"
-        witness_b = "<tei><s>x</s>y<s>z</s></tei>"
+        witness_a = "<tei><s1>x y z</s1></tei>"
+        witness_b = "<tei><s2>x</s2>y<s3>z</s3></tei>"
         tokens_a = convert_xml_string_into_tokens(witness_a)
         tokens_b = convert_xml_string_into_tokens(witness_b)
         superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
@@ -83,10 +48,21 @@ class DotTest(TestCase):
     1 -> 2
     2 -> 3
     a1 label="tei"
-    a2 label="s"
-    a3 label="s"
-    a4 label="s"
+    a2 label="s1"
+    a3 label="s2"
+    a4 label="s3"
+    a1 - a2
+    a1 - a3
+    a2 - 1
+    a3 - 1
+    a1 - a2
+    a2 - 2
+    a1 - a2
+    a1 - a4
+    a2 - 3
+    a4 - 3
 }"""
+        # TODO: There are some duplication annotation edges here that should be removed! (a1 - a2)
         # vertices only for the moment
         self.assertEqual(expected_out, dot_export)
 
