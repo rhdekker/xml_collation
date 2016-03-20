@@ -21,6 +21,7 @@ class DotTest(TestCase):
     3 [label="z"]
     1 -> 2
     2 -> 3
+{ rank=same; 1; 2; 3 }
 }"""
         self.assertEqual(expected_out, dot_export)
 
@@ -47,20 +48,21 @@ class DotTest(TestCase):
     3 [label="z"]
     1 -> 2
     2 -> 3
+{ rank=same; 1; 2; 3 }
     a1 [label="tei"]
     a2 [label="s1"]
     a3 [label="s2"]
     a4 [label="s3"]
-    a1 -> a2
-    a1 -> a3
-    a2 -> 1
-    a3 -> 1
-    a1 -> a2
-    a2 -> 2
-    a1 -> a2
-    a1 -> a4
-    a2 -> 3
-    a4 -> 3
+    a2 -> a1
+    a3 -> a1
+    1 -> a2
+    1 -> a3
+    a2 -> a1
+    2 -> a2
+    a2 -> a1
+    a4 -> a1
+    3 -> a2
+    3 -> a4
 }"""
         # TODO: There are some duplication annotation edges here that should be removed! (a1 - a2)
         # vertices only for the moment

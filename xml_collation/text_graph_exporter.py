@@ -22,6 +22,12 @@ def export_as_dot(textgraph, annotations=False):
     for v, w in pairwise(text_tokens_as_numbers):
         output += '    '+str(v)+' -> '+str(w)+'\n'
 
+    # add rank directive
+    # { rank=same, b, c, d }
+    output += '{ rank=same; '
+    output += "; ".join([str(number) for number in text_tokens_as_numbers])
+    output += " }\n"
+
     if annotations:
         # I need to sort the annotations that are on the text graph
         annotation_counter = 0
@@ -56,12 +62,12 @@ def export_as_dot(textgraph, annotations=False):
                 open_annotation_counter += 1
                 # check highest_level
                 if open_annotation[0].level == highest_level:
-                    output += "    a"+str(open_annotation[1])+ " -> "+str(text_token_as_number)+"\n"
+                    output += "    "+str(text_token_as_number)+ " -> a"+str(open_annotation[1])+"\n"
                 else:
                     for other_annotation in open_annotations[open_annotation_counter:]:
                         # print(open_annotation, other_annotation)
                         if other_annotation[0].level - open_annotation[0].level == 1:
-                            output += "    a"+str(open_annotation[1]) + " -> a"+str(other_annotation[1])+"\n"
+                            output += "    a"+str(other_annotation[1]) + " -> a"+str(open_annotation[1])+"\n"
 
             # handle the annotations that should be closed
             while open_annotations and open_annotations[-1][0].range_end == text_token_as_number - 1:
