@@ -137,6 +137,16 @@ class TestTextGraph(unittest.TestCase):
         annotations = textgraph.annotations_sorted
         self.assertEqual(expected_annotations, annotations)
 
+    # NOTE: Currently milestone elements are ignore as annotations (since there are no text nodes to hang them on)
+    def test_textgraph_milestones_annotations(self):
+        witness_a = "<tei><lb/></tei>"
+        witness_b = "<tei><lb/></tei>"
+        tokens_a = convert_xml_string_into_tokens(witness_a)
+        tokens_b = convert_xml_string_into_tokens(witness_b)
+        superwitness = align_tokens_and_return_superwitness(tokens_a, tokens_b)
+        textgraph = convert_superwitness_to_textgraph(superwitness)
+        annotations = textgraph.annotations
+        self.assertEqual(0, len(annotations))
 
 
 

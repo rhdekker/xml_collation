@@ -71,16 +71,26 @@ def convert_superwitness_to_textgraph(superwitness):
                         # combine in 1 annotation
                         # annotation is the same element and on the same position in both witnesses
                         # stacks not necessarily same height
-                        annotations.append(Annotation(administration_a[0], administration_a[1], administration_a[2], text_token_counter, administration_a[3]))
+                        tagname = administration_a[0]
+                        witnesses = administration_a[1]
+                        range_start = administration_a[2]
+                        range_end = text_token_counter
+                        level = administration_a[3]
+                        create_new_annotation_and_add_to_annotations(annotations, tagname, witnesses, range_start,
+                                                                     range_end, level)
                         # print(annotations[-1])
                     else:
                         # print("2")
                         # create two separate annotations
                         # annotation could be the same tag but not the same element
                         # add the item to the annotations list given the coordinates of the range
-                        annotations.append(Annotation(administration_a[0], ["A"], administration_a[2], text_token_counter, administration_a[3]))
+                        create_new_annotation_and_add_to_annotations(annotations, administration_a[0], ["A"],
+                                                                     administration_a[2], text_token_counter,
+                                                                     administration_a[3])
                         # print(annotations[-1])
-                        annotations.append(Annotation(administration_b[0], ["B"], administration_b[2], text_token_counter, administration_b[3]))
+                        create_new_annotation_and_add_to_annotations(annotations, administration_b[0], ["B"],
+                                                                     administration_b[2], text_token_counter,
+                                                                     administration_b[3])
                         # print(annotations[-1])
                 else:
                     # print("3")
@@ -88,7 +98,9 @@ def convert_superwitness_to_textgraph(superwitness):
                     # --> one of the two witnesses is not a closing tag
                     # witnesses is list: aligned, addition, omission (A(+B), A, B)
                     administration = open_tags_per_witness[extended_token.witnesses[0]].pop()
-                    annotations.append(Annotation(administration[0], extended_token.witnesses, administration[2], text_token_counter, administration[3]))
+                    create_new_annotation_and_add_to_annotations(annotations, administration[0],
+                                                                 extended_token.witnesses, administration[2],
+                                                                 text_token_counter, administration[3])
                     # print(annotations[-1])
             else:
                 level = calculate_level(open_tags_per_witness, extended_token)
@@ -103,3 +115,11 @@ def convert_superwitness_to_textgraph(superwitness):
 
     textgraph = TextGraph(text_tokens, annotations)
     return textgraph
+
+
+def create_new_annotation_and_add_to_annotations(annotations, tagname, witnesses, range_start, range_end, level):
+    # check whether there are text nodes in between the range
+    if range_end < range_start:
+        return
+
+    annotations.append(Annotation(tagname, witnesses, range_start, range_end, level))
