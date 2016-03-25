@@ -2,21 +2,21 @@ from collections import deque
 from itertools import tee
 
 
-def export_as_dot(textgraph, annotations=False):
+def export_as_dot(textgraph, annotations=False, limit=1000):
     # opener
     output = "strict digraph TextGraph {\n"
 
     # add nodes for text nodes
     # we go over the text nodes
     text_token_counter = 0
-    for text_token in textgraph.text_tokens:
+    for text_token in textgraph.text_tokens[0:limit]:
         text_token_counter += 1
         output += '    '+str(text_token_counter)+' [label="'+text_token.token.content+'"]\n'
 
     # We have to map text nodes to a number
     # TODO: some duplication with code above
     # TODO: this could probably done simpler by setting up a range based on the length of the text tokens
-    text_tokens_as_numbers = [ counter+1 for counter, text_token in enumerate(textgraph.text_tokens) ]
+    text_tokens_as_numbers = [ counter+1 for counter, text_token in enumerate(textgraph.text_tokens[0:limit]) ]
 
     # add edges for text nodes
     for v, w in pairwise(text_tokens_as_numbers):
@@ -66,7 +66,9 @@ def export_as_dot(textgraph, annotations=False):
                 else:
                     for other_annotation in open_annotations[open_annotation_counter:]:
                         # print(open_annotation, other_annotation)
-                        if other_annotation[0].level - open_annotation[0].level == 1:
+                        condition1 = other_annotation[0].level - open_annotation[0].level == 1
+                        condition2 = (witness for witness in other_annotation[0].witnesses if witness in open_annotation[0].witnesses)
+                        if condition1 and next(condition2, None):
                             output += "    a"+str(other_annotation[1]) + " -> a"+str(open_annotation[1])+"\n"
 
             # handle the annotations that should be closed
