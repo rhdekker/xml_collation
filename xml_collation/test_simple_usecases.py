@@ -29,7 +29,9 @@ class Beckett_examples(unittest.TestCase):
         tokenindex = TokenIndex(witnesses)
         tokenindex.prepare()
 
-        print(tokenindex.split_lcp_array_into_intervals())
+        intervals = tokenindex.split_lcp_array_into_intervals()
+        for interval in intervals:
+            print(str(interval))
 
         fail()
 

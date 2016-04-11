@@ -1,6 +1,6 @@
 from ClusterShell.RangeSet import RangeSet
 
-from xml_collation.collate_xml_hierarchy import Token
+from xml_collation.collate_xml_hierarchy import Token, ElementToken
 from xml_collation.linsuffarr import SuffixArray
 from xml_collation.linsuffarr import UNIT_BYTE
 
@@ -52,7 +52,9 @@ class TokenIndex(object):
     def get_sa(self):
         # NOTE: implemented in a lazy manner, since calculation of the Suffix Array and LCP Array takes time
         if not self.cached_suffix_array:
-            string_array = [token.token_string for token in self.token_array]
+            string_array = [token.token_string if not isinstance(token, ElementToken) else str(idx) for idx, token in enumerate(self.token_array) ]
+            # for stri in string_array:
+            #    print(stri)
             # Unit byte is done to skip tokenization in third party library
             self.cached_suffix_array = SuffixArray(string_array, unit=UNIT_BYTE)
         return self.cached_suffix_array
