@@ -14,6 +14,10 @@ class Token(object):
     def __init__(self, content):
         self.content = content
 
+    @property
+    def token_string(self):
+        return self.content
+
     def __str__(self):
         return self.content
 
