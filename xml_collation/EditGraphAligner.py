@@ -193,20 +193,7 @@ class EditGraphAligner(object):
             edit_operation = 0
         else:
             edit_operation = 1
-        token_a = self.tokens_witness_a[x-1]
-        token_b = self.tokens_witness_b[y-1]
+        token_a = self.tokens_witness_a[x-1] if x > 0 else None
+        token_b = self.tokens_witness_b[y-1] if y > 0 else None
         self.scorer.score_cell(self.table[y][x], parent_node, token_a, token_b, y, x, edit_operation)
 
-
-     # def _debug_edit_graph_table(self, table):
-     #     # print the table horizontal
-     #     x = PrettyTable()
-     #     x.header=False
-     #     for y in range(0, len(table)):
-     #         cells = table[y]
-     #         x.add_row(cells)
-     #     # alignment can only be set after the field names are known.
-     #     # since add_row sets the field names, it has to be set after x.add_row(cells)
-     #     x.align="l"
-     #     print(x)
-     #     return x

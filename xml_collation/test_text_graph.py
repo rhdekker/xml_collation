@@ -1,7 +1,8 @@
 import unittest
 
 from xml_collation.TextGraph import convert_superwitness_to_textgraph, Annotation
-from xml_collation.collate_xml_hierarchy import convert_xml_string_into_tokens, align_tokens_and_return_superwitness
+from xml_collation.collate_xml_hierarchy import align_tokens_and_return_superwitness
+from xml_collation.old_tokenizer import convert_xml_string_into_tokens
 
 
 class TestTextGraph(unittest.TestCase):

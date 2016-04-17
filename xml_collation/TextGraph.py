@@ -1,17 +1,9 @@
 from collections import namedtuple, defaultdict
 # defaultdict is a subclass of dict
-
-from xml_collation.collate_xml_hierarchy import TextToken
+from xml_collation.tokenizer import TextToken
 
 Annotation = namedtuple('Annotation', ['tagname', 'witnesses', 'range_start', 'range_end', 'level'])
 
-
-class Stack(list):
-    def push(self, item):
-        self.append(item)
-
-    def peek(self):
-        return self[-1]
 
 
 class TextGraph(object):
