@@ -45,12 +45,6 @@ class OrAwareTokenizer(object):
         # TODO: make last_text_token a local variable instead?
         self.last_text_token = 0
 
-    def tokenize_text(self, data):
-        # we work with a list here in stead of a generator because we have to do multiple things here
-        tokens = [TextToken(content, self.last_text_token+idx) for idx, content in enumerate(re.findall(r'\w+|[^\w\s]+', data))]
-        self.last_text_token += len(tokens)
-        return tokens
-
     def convert_xml_file_into_tokens(self, xml_filename):
         doc = parse(xml_filename)
         return self.convert_xml_doc_into_tokens(doc)
@@ -69,7 +63,18 @@ class OrAwareTokenizer(object):
             # debug
             # print(event, node)
             if event == CHARACTERS:
-                tokens.extend(self.tokenize_text(node.data))
+                # we work with a list here in stead of a generator because we have to do multiple things here
+                # the previous position that we have to give here can get quite complex
+                # it depends whether we are in an or and whether we are at the start of the option
+                # at the start of the option we have to pass a different previous position than in the rest of the
+                # text
+                # last position = self.last_text_token + idx if idx > 0 or when NOT in a or
+                # otherwise: last_position = last_or_open_stack
+                last_or_open = [element[1] for element in important_elements if element[0]=="or_open"]
+                text_tokens = [TextToken(content, self.last_text_token + idx if idx > 0 or not last_or_open else
+                        last_or_open[-1]) for idx, content in enumerate(re.findall(r'\w+|[^\w\s]+', node.data))]
+                self.last_text_token += len(text_tokens)
+                tokens.extend(text_tokens)
 
             elif event == START_ELEMENT:
                 # XML elements that represent system stuff like "witness" and "or" and "option" should not get their

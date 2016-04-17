@@ -38,8 +38,8 @@ class EditGraphAlignerTest(unittest.TestCase):
 
         tokens_b = tokenizer.convert_xml_string_into_tokens(wit_b)
         self.assertEquals(TextToken("a", 0), tokens_b[0])
-        self.assertEquals(TextToken("b", 1), tokens_b[1]) # TODO: CHANGE INTO 0!
-        self.assertEquals(TextToken("c", 2, [1, 2, 3]), tokens_b[2]) # TODO: CHANGE INTO 0!
+        self.assertEquals(TextToken("b", 0), tokens_b[1])
+        self.assertEquals(TextToken("c", 0, [1, 2, 3]), tokens_b[2])
         self.assertEquals(3, len(tokens_b))
 
 
