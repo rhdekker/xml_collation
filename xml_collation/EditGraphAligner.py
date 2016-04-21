@@ -206,4 +206,28 @@ class EditGraphAligner(object):
         else:
             edit_operation = 1
         self.scorer.score_cell(self.table[y][x], parent_node, token_a, token_b, y, x, edit_operation)
+        # process or operator if necessary
+        # first check whether both (x and y) current tokens have after properties on them
+        # if so we can not yet deal with that situation yet
+        if token_a and token_b and token_a.after and token_b.after:
+            raise Exception("PROBLEM!")
+        # TODO: test horizontal OR, only vertical OR is tested at the moment
+        # deal with horizontal OR
+        if token_a and token_a.after:
+            # take the maximum of each of the x position mentioned in the list in the after property
+            values = [self.table[y][x].g for x in token_a.after]
+            max_scoring_option = max(values)
+            print(max_scoring_option)
+            self.table[y][x].g = max_scoring_option
+            pass
+
+
+        # deal with vertical OR
+        if token_b and token_b.after:
+            # take the maximum of each of the x position mentioned in the list in the after property
+            values = [self.table[option_y][x].g for option_y in token_b.after]
+            max_scoring_option = max(values)
+            print(max_scoring_option)
+            self.table[y][x].g = max_scoring_option
+            pass
 

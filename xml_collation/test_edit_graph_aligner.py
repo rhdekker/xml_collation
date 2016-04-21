@@ -46,7 +46,7 @@ class EditGraphAlignerTest(unittest.TestCase):
     # 1) The XML elements are not by itself visible in table,
     # 2) but do alter the score.
     # 3) Every option should reset the score at the begin of the option to the last score before the choice
-    # 4) TODO: At the end the of the choice the best score at the end of each option has to chosen
+    # 4) At the end the of the choice the best score at the end of each option has to chosen
     def test_or_operator(self):
         wit_a = '<witness n="1">a</witness>'
         wit_b = '<witness n="2"><or><option>a</option><option>b</option><option>c</option></or></witness>'
@@ -60,4 +60,4 @@ class EditGraphAlignerTest(unittest.TestCase):
         self.assertRow([0, -1], table[0])
         self.assertRow([-1, 0], table[1])
         self.assertRow([-1, -2], table[2])
-        self.assertRow([-1, -2], table[3]) #TODO: the second -2 should become a 0 after the OR operator is implemented
+        self.assertRow([-1, 0], table[3])
