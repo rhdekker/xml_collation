@@ -15,7 +15,7 @@ class EditGraphAlignerTest(unittest.TestCase):
             actual.append(cell.g)
         self.assertEqual(expected, actual)
 
-    def _debug_edit_graph_table(self, table):
+    def debug_edit_graph_table(self, table):
         # print the table horizontal
         x = PrettyTable()
         x.header=False
@@ -42,18 +42,22 @@ class EditGraphAlignerTest(unittest.TestCase):
         self.assertEquals(TextToken("c", 0, [1, 2, 3]), tokens_b[2])
         self.assertEquals(3, len(tokens_b))
 
-
-
-    # def test_or_operator(self):
-    #     wit_a = '<witness n="1">a</witness>'
-    #     wit_b = '<witness n="2"><or><option>a</option><option>b</option><option>c</option></or></witness>'
-    #     # TODO: make tokenizer a separate class
-    #     tokens_a = convert_xml_string_into_tokens(wit_a)
-    #     tokens_b = convert_xml_string_into_tokens(wit_b)
-    #     aligner = EditGraphAligner()
-    #     aligner.align(tokens_a, tokens_b)
-    #     aligner._debug_edit_graph_table(aligner.table)
-    #     table = aligner.table
-    #     # what do I want? Well XML elements should not alter the score in anyway, just take the lowest neighbor score
-    #     self.assertRow([0, 0, -1, -1], table[0])
-    #     self.fail()
+    # what do I want?
+    # 1) The XML elements are not by itself visible in table,
+    # 2) but do alter the score.
+    # 3) Every option should reset the score at the begin of the option to the last score before the choice
+    # 4) TODO: At the end the of the choice the best score at the end of each option has to chosen
+    def test_or_operator(self):
+        wit_a = '<witness n="1">a</witness>'
+        wit_b = '<witness n="2"><or><option>a</option><option>b</option><option>c</option></or></witness>'
+        tokenizer = OrAwareTokenizer()
+        tokens_a = tokenizer.convert_xml_string_into_tokens(wit_a)
+        tokens_b = tokenizer.convert_xml_string_into_tokens(wit_b)
+        aligner = EditGraphAligner()
+        aligner.align(tokens_a, tokens_b)
+        self.debug_edit_graph_table(aligner.table)
+        table = aligner.table
+        self.assertRow([0, -1], table[0])
+        self.assertRow([-1, 0], table[1])
+        self.assertRow([-1, -2], table[2])
+        self.assertRow([-1, -2], table[3]) #TODO: the second -2 should become a 0 after the OR operator is implemented

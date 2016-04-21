@@ -172,28 +172,38 @@ class EditGraphAligner(object):
                 function_to_call(y, x)
                 j -= 1
 
+    # This method takes the previous token into account that is stored on the token itself
+    # first 1) take current y, with previous x
+    # then  2) take previous y, with the current x
+    # then  3) take previous y, with previous x
     def score_cell(self, y, x):
         # initialize root node score to zero (no edit operations have
         # been performed)
         if y == 0 and x == 0:
             self.table[y][x].g = 0
             return
+        # fetch tokens
+        token_a = self.tokens_witness_a[x - 1] if x > 0 else None
+        token_b = self.tokens_witness_b[y - 1] if y > 0 else None
+        # fetch the previous token position from the token in the x direction
+        # TODO: rename name parents
+        previous_x_token_position = token_a.parents if x > 0 else None
+        # fetch the previous token position from the token in the y direction
+        previous_y_token_position = token_b.parents if y > 0 else None
         # examine neighbor nodes
         nodes_to_examine = set()
         # fetch existing score from the left node if possible
         if x > 0:
-            nodes_to_examine.add(self.table[y][x-1])
+            nodes_to_examine.add(self.table[y][previous_x_token_position])
         if y > 0:
-            nodes_to_examine.add(self.table[y-1][x])
+            nodes_to_examine.add(self.table[previous_y_token_position][x])
         if x > 0 and y > 0:
-            nodes_to_examine.add(self.table[y-1][x-1])
+            nodes_to_examine.add(self.table[previous_y_token_position][previous_x_token_position])
         # calculate the maximum scoring parent node
         parent_node = max(nodes_to_examine, key=lambda x: x.g)
-        if parent_node == self.table[y-1][x-1]:
+        if x > 0 and y > 0 and parent_node == self.table[previous_y_token_position][previous_x_token_position]:
             edit_operation = 0
         else:
             edit_operation = 1
-        token_a = self.tokens_witness_a[x-1] if x > 0 else None
-        token_b = self.tokens_witness_b[y-1] if y > 0 else None
         self.scorer.score_cell(self.table[y][x], parent_node, token_a, token_b, y, x, edit_operation)
 

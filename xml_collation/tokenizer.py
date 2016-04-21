@@ -23,8 +23,10 @@ class TextToken(Token):
         self.parents = parents
         self.after = after
 
+    # the 'after' field is a list, lists cannot be hashed in python
+    # since hashes do not have to be unique we skip that attribute for now
     def __hash__(self):
-        return hash(self.content) + hash(self.parents) + hash(self.after)
+        return hash(self.content) + hash(self.parents)
 
     def __eq__(self, other):
         return self.content == other.content and self.parents == other.parents and self.after == other.after
